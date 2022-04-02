@@ -9,7 +9,7 @@ const costList = () => import("@/views/sellTaskMoney/costList")
 const sellTaskFlow = () => import("@/views/sellTaskFlow/sekkTaskFlow")
 
 const shop = () => import("@/views/shop/index")
-const taobao = () => import("@/views/shop/taobao")
+const taobao = () =>  import("@/views/shop/taobao") 
 const jingdong = () => import("@/views/shop/jingdong")
 const pdd = () => import("@/views/shop/pdd")
 const dy = () => import("@/views/shop/dy")
@@ -53,11 +53,12 @@ export default new Router({
     path:'/shop',
     component:shop,
     children:[
-      { path: '/shop/tabao', component: taobao},
+      { path: '/shop/taobao', component: taobao},
       { path: '/shop/jingdong', component: jingdong},
       { path: '/shop/pdd', component: pdd},
       { path: '/shop/dy', component: dy},
       { path: '/shop/znzs', component: znzs},
+
   ]
   },
   {
