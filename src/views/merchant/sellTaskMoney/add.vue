@@ -4,15 +4,15 @@
         发布活动
          </h2>
 
-    <ul class="alipay-bind">
+    <ul class=" p-2">
 
         <el-form :model="formData" :rules="rules" ref="ruleForm" size="small" label-width="120px" class="demo-ruleForm">
-            <el-collapse >
+            <el-collapse  v-model="activeNames">
 
                 <el-card class="box-card">
                     <el-collapse-item name="1">
                         <template slot="title">
-                            <h2>1. 基础信息</h2>
+                            <h2 class="list_name">1. 基础信息</h2>
                         </template>
                         <el-row :gutter="20">
                             <el-col :span="24">
@@ -135,13 +135,13 @@
                         <el-row :gutter="20">
                             <el-col :span="6">
                                 <el-form-item label="商品单价:" prop="ShowUnitPrice">
-                                    <el-input-number v-model="formData.ShowUnitPrice" :min="0" :precision="2" :step="1"></el-input-number>
+                                    <el-input-number v-model="formData.ShowUnitPrice" :min="0" :precision="2" :step="1" value="0"></el-input-number>
                                 </el-form-item>
                             </el-col>
 
                             <el-col :span="8">
                                 <el-form-item label="每单买:" prop="PaiNum">
-                                    <el-input-number v-model="formData.PaiNum" :min="1" :precision="0" :step="1"></el-input-number> 个
+                                    <el-input-number v-model="formData.PaiNum" :min="1" :precision="0" :step="1" value="0"></el-input-number> 个
                                 </el-form-item>
                             </el-col>
                             
@@ -217,7 +217,7 @@
                     <el-collapse-item name="2">
 
                         <template slot="title">
-                            <h2>2.进店方式</h2>
+                            <h2 class="list_name" >2.进店方式</h2>
                         </template>
                         <el-row :gutter="20">
                             <el-col :span="24">
@@ -369,7 +369,7 @@
                 <el-card class="box-card">
                     <el-collapse-item name="3">
                         <template slot="title">
-                            <h2>3. 千人千面</h2>
+                            <h2 class="list_name">3. 千人千面</h2>
                         </template>
                         <el-row :gutter="20">
                             <el-col :span="24">
@@ -621,7 +621,7 @@
                 <el-card class="box-card task-remark">
                     <el-collapse-item name="4">
                         <template slot="title">
-                            <h2>4. 增值服务</h2>
+                            <h2 class="list_name">4. 增值服务</h2>
                         </template>
                         <el-row :gutter="20">
                             <el-col :span="24">
@@ -1049,7 +1049,7 @@
                 <el-card class="box-card">
                     <el-collapse-item name="5">
                         <template slot="title">
-                            <h2>5. 其他</h2>
+                            <h2 class="list_name">5. 其他</h2>
                         </template>
                         <el-row :gutter="20">
                             <el-col :span="24">
@@ -1270,11 +1270,17 @@ export default {
             currRefundTypeCustomEnable:1,
             getShopList:{}, //店铺数
             tmplId:{},   //选择模板
-            bindShopLink:[] //绑定店铺
+            bindShopLink:[], //绑定店铺
+            activeNames: ['1','2','3','4','5'] //折叠面板展开
         }
     }
 }
 </script>
 <style scoped>
-
+    ul{
+        list-style: none;
+    }
+    .list_name{
+        color: #409EFF;
+    }
 </style>
