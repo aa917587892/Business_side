@@ -6,7 +6,7 @@
 			</div>
 			<div class="tabbar_ layui-col-md6" style="display: flex;flex:1;display:inline; text-align: center;padding:0px 50px 0px 80px;">
 				<ul class="flex "   >
-					<li><router-link to="">首页用户</router-link></li>
+					<li><router-link to="/merchant/home">首页用户</router-link></li>
 					<li>增流提升</li>
 					<li>电商工具</li>
 					<li>电商学堂</li>

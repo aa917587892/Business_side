@@ -1,24 +1,21 @@
 <template>
     <div id="app">  
          <div>
-        <h3 class="px-2 py-1 border-bottom" >我的抖音小店店铺<el-button class="" style="float:right" type="primary"><i class="el-icon-plus"></i> 我的抖音小店店铺</el-button></h3>
+        <h3 class="px-2 pt-1 pb-2 border-bottom" >我的淘宝店铺    
+        <el-button class="" style="float:right;" type="primary"><i class="el-icon-plus"></i> 绑定淘宝店铺</el-button></h3>
        
         <div class="m-2  p-2 border">
             <div class=" mt-2">
               <el-table :data="tableData" style="width: 100%" :default-sort = "{prop: 'date', order: 'descending'}">                    
-                    <el-table-column prop="shopname" label="已绑定店铺名" sortable width="130"></el-table-column>
-                    <el-table-column prop="username" label="店铺账号" sortable  ></el-table-column>
+                     <el-table-column prop="shopname" label="已绑定店铺名" sortable width="130"></el-table-column>
+                    <el-table-column prop="username" label="店铺账号" sortable ></el-table-column>
                     <el-table-column prop="number_data" label="复购天数" width="100"></el-table-column>
                     <el-table-column prop="address" label="发货省/市/区"  ></el-table-column>
-                    <el-table-column prop="details" label="发货详细地址"  ></el-table-column>
+                    <el-table-column prop="details" label="发货详细地址" ></el-table-column>
                     <el-table-column prop="data" label="绑定日期" width="100"></el-table-column>
                     <el-table-column prop="state" label="审核状态" width="100">
                     <template slot-scope="scope" >
-                        <el-button
-                            size="mini"
-                            type="success"
-                            plain
-                            @click="handleEdit(scope.$index, scope.row)">正常</el-button>
+                          <el-button size="mini" type="success">正常</el-button>
                         <el-button
                             size="mini"
                             type="danger"
@@ -72,18 +69,25 @@
             address:'东莞市莞城地区',
             details:'xxxx小区',
             data:'2022.1.12',
-            state:'异常'
+            state:'正常'
                 }] 
-
          }
          }
       ,
     components:{
+    },
+       methods: {
+      handleEdit(index, row) {
+        console.log(index, row);
+      },
+      handleDelete(index, row) {
+        console.log(index, row);
+      }
     }
   }
 </script>
 <style scoped>
-.el-table thead{
-  color: #6794ef;
-}
+    .el-table thead{
+         color: #6794ef;
+    }
 </style>

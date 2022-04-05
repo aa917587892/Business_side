@@ -8,6 +8,11 @@ import 'element-ui/lib/theme-chalk/index.css';
 
 import './assets/css/free.css'
 
+// import echarts from 'echarts'
+// Vue.prototype.$echarts = echarts
+
+
+
 Vue.use(ElementUI)
 
 

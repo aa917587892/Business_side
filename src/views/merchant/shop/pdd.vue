@@ -1,7 +1,7 @@
 <template>
     <div id="app">  
          <div>
-        <h3 class="px-2 py-1 border-bottom" >我的拼多多店铺    <el-button class="" style="float:right" type="primary"><i class="el-icon-plus"></i> 绑定拼多多店铺</el-button></h3>
+        <h3 class="px-2 pt-1 pb-2 border-bottom" >我的拼多多店铺    <el-button class="" style="float:right" type="primary"><i class="el-icon-plus"></i> 绑定拼多多店铺</el-button></h3>
        
         <div class="m-2  p-2 border">
             <div class=" mt-2">

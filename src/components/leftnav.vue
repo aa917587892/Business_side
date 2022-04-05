@@ -8,26 +8,25 @@
                 <i class="el-icon-present" style="color:#409EFF"></i>
                 <span>试用活动</span>
             </template>
-            <el-menu-item index="11-1"><a href="">发布活动</a></el-menu-item>
+            <router-link to='/merchant/sellTaskMoney/add'><el-menu-item index="11-1">发布活动</el-menu-item></router-link>
             <el-menu-item index="11-2"><a href="">活动管理</a></el-menu-item>
             <el-menu-item index="11-3"><a href="">订单管理</a></el-menu-item>
             <el-menu-item index="11-9"><a href="">返款管理<el-badge class="mark" :hidden="0==0" :value="0" /></a></el-menu-item>
             <el-menu-item index="11-5"><a href="">售后服务</a></el-menu-item>
             <el-menu-item index="11-4"><a href="">任务模版</a></el-menu-item>
             <el-menu-item index="11-6">拉黑买号</el-menu-item>
-            <el-menu-item index="11-7"><router-link to='/sellTaskMoney/costList'>收费标准</router-link></el-menu-item>
+             <router-link to='/merchant/sellTaskMoney/costList'><el-menu-item index="11-7">收费标准</el-menu-item></router-link>
         </el-submenu>
             <el-submenu index="3" v-if="'v-if'">
                 <template slot="title">
                     <i class="el-icon-s-shop" style="color:#67C23A"></i>
                     <span>店铺管理</span>
                 </template>
-                <el-menu-item index="3-1" v-if="'v-if'"><router-link to='/shop/taobao'>淘宝店铺</router-link></el-menu-item>
-                <el-menu-item index="3-2" v-if="'v-if'"><router-link to='/shop/jingdong'>京东店铺</router-link></el-menu-item>
-                <el-menu-item index="3-3" v-if="'v-if'"><router-link to='/shop/pdd'>拼多多店铺</router-link></el-menu-item>
-                <el-menu-item index="3-4" v-if="'v-if'"><router-link to='/shop/dy'>抖音小店</router-link></el-menu-item>
-
-                <el-menu-item index="3-5" v-if="1"><router-link to='/shop/znzs'>淘宝智能助手</router-link></el-menu-item>
+                <router-link to='/merchant/shop/taobao'><el-menu-item index="3-1" v-if="'v-if'">淘宝店铺</el-menu-item></router-link>
+                <router-link to='/merchant/shop/jingdong'><el-menu-item index="3-2" v-if="'v-if'">京东店铺</el-menu-item></router-link>
+                <router-link to='/merchant/shop/pdd'><el-menu-item index="3-3" v-if="'v-if'">拼多多店铺</el-menu-item></router-link>
+                <router-link to='/merchant/shop/dy'><el-menu-item index="3-4" v-if="'v-if'">抖音小店</el-menu-item></router-link>
+                <router-link to='/merchant/shop/znzs'><el-menu-item index="3-5" v-if="1">淘宝智能助手</el-menu-item></router-link>
             </el-submenu>
                     <el-submenu index="12" v-if="'v-if'">
                 <template slot="title">
