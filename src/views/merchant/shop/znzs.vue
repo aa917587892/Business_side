@@ -1,6 +1,6 @@
 <template>
-    <div>
-    <h3 class="px-2 py-1 border-bottom" >淘宝智能助手</h3>
+    <div style="width:1000px;background-color:white;padding-bottom:100px">
+    <h3 class="px-2  py-2 border-bottom m-0">淘宝智能助手</h3>
     <div class="m-2 border position-relative">
         <h5 class="px-2 pb-1 border-bottom ">一、开通智能助手流程: </h5>
         <div class="flex m-2">

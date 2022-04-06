@@ -1,7 +1,7 @@
 <template>
    <div class="flex justify-center ">
       <leftnav style="width:200px"></leftnav>
-      <div class="ml-1" style="width:1000px;background-color:white">
+      <div class="ml-1" >
         <router-view/>
         </div>
       

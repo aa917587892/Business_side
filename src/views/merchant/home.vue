@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" style="width:1050px;background-color:white;padding-bottom:30px">
     <div class="flex">
       <div class="nav flex-1">
         <div class="mx-2 my-1 border p-1">
@@ -152,13 +152,13 @@
       <div style=" width: 220px;margin-right:20px;margin-top:10px">
           <div
           class="weixin border">
-          <h3 class="pl-2 pb-1 border-bottom"><i class="el-icon-phone-outline text_color"></i> 联系方式</h3>
+          <h4 class="pl-2 pb-1 border-bottom"><i class="el-icon-phone-outline text_color"></i> 联系方式</h4>
           <li class="pl-2  align-center">客服QQ: <img src="@/assets/images/home/qq.png" style="width:90px;height:20px" alt="" srcset=""></li>
           <li class="pl-2  align-center">客服电话: 扫码加微信</li>
           <li class=" text-center  justify-center align-center"><img src="@/assets/images/home/erweima.jpg" style="width:140px;height:140px" alt="" srcset=""><p class=" text-center">扫码加微信</p></li>
         </div>
         <div class="border mt-2">
-            <h3 class="pl-2 pb-1 border-bottom"><i class="el-icon-message-solid text_color"></i> 全体公告</h3>
+            <h4 class="pl-2 pb-1 border-bottom"><i class="el-icon-message-solid text_color"></i> 全体公告</h4>
         </div>
       </div>
      

@@ -33,8 +33,8 @@
                     <i class="el-icon-star-off" style="color:#F56C6C"></i>
                     <span>增流活动</span>
                 </template>
-                <el-menu-item index="12-1"><a href="">淘宝增流</a></el-menu-item>
-                <el-menu-item index="12-2"><a href="">拼多多增流</a></el-menu-item>
+                 <router-link to='/merchant/sellTaskFlow/BuyTbFlow'><el-menu-item index="12-1"><a href="">淘宝增流</a></el-menu-item></router-link>
+                 <router-link to='/merchant/sellTaskFlow/BuyTbFlow'><el-menu-item index="12-2"><a href="">拼多多增流</a></el-menu-item></router-link>
                 <el-menu-item index="12-3"><a href="">京东增流</a></el-menu-item>
                 <el-menu-item index="12-5"><a href="">增流订单</a></el-menu-item>
             </el-submenu>
@@ -58,10 +58,9 @@
                 <i class="el-icon-money" style="color:#E6A23C"></i>
                 <span>金币管理</span>
             </template>
-            <el-menu-item index="4-1" v-if="'v-if'"><a href="/">金币充值</a></el-menu-item>
-            <el-menu-item index="4-2" v-if="'v-if'"><a href="/">充值明细</a></el-menu-item>
-
-            <el-menu-item index="4-5"><a href="/">金币明细</a></el-menu-item>
+             <router-link to='/merchant/wealth/topUp'><el-menu-item index="4-1" v-if="'v-if'">金币充值</el-menu-item></router-link>
+             <router-link to='/merchant/wealth/rechargeList'><el-menu-item index="4-2" v-if="'v-if'">充值明细</el-menu-item></router-link>
+             <router-link to='/merchant/wealth/goldDetail'><el-menu-item index="4-5">金币明细</el-menu-item></router-link>
             
         </el-submenu>
         <el-submenu index="5">
@@ -69,11 +68,10 @@
                 <i class="el-icon-user" style="color:#F56C6C"></i>
                 <span>系统管理</span>
             </template>
-            <el-menu-item index="5-1"><a href="/">基本信息</a></el-menu-item>
-            <el-menu-item index="5-2"><a href="/">账户安全</a></el-menu-item>
-            <el-menu-item index="5-4" v-if="''"><a href="/">实名认证</a></el-menu-item>
-                <el-menu-item index="5-3"><a href="/">推广赚钱</a></el-menu-item>
-            <el-menu-item index="6-1"><a href="/">站内消息<el-badge class="mark" :hidden="2==0" :value="2" /></a></el-menu-item>
+            <router-link to='/merchant/user/user'><el-menu-item index="5-1"><a href="/">基本信息</a></el-menu-item></router-link>
+            <router-link to='/merchant/user/security'><el-menu-item index="5-2"><a href="/">账户安全</a></el-menu-item></router-link>
+            <router-link to='/merchant/user/invitation'><el-menu-item index="5-3"><a href="/">推广赚钱</a></el-menu-item></router-link>
+            <router-link to='/merchant/user/message'><el-menu-item index="6-1"><a href="/">站内消息<el-badge class="mark" :hidden="2==0" :value="2" /></a></el-menu-item></router-link>
             <el-menu-item index="6-2"><a href="/" target="_blank">帮助中心</a></el-menu-item>
         </el-submenu>
     </el-menu>

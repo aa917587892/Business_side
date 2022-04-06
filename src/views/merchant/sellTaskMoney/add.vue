@@ -1,6 +1,6 @@
 <template>
-    <div>
-         <h2 class="px-3 py-2 border-bottom">
+    <div style="width:1000px;background-color:white">
+         <h2 class="px-3 py-2 border-bottom" style="margin:0px">
         发布活动
          </h2>
 

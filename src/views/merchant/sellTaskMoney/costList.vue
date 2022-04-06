@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <h2 class="px-2 pb-2 border-bottom">基础服务费</h2>
+    <div style="width:1000px;background-color:white;padding-bottom:100px">
+      <h2 class="px-2 pt-2 pb-2 m-0 border-bottom">基础服务费</h2>
       <!-- 表格 -->
       <div class="table m-2">
           <div>

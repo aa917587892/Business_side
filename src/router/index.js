@@ -16,15 +16,23 @@ const merchant = () => import("@/views/merchant/index")
         const blackList = () => import("@/views/merchant/sellTaskMoney/blackList")
         const costList = () => import("@/views/merchant/sellTaskMoney/costList")
     const tool = () => import("@/views/merchant/tool/tool")
-    const user = () => import("@/views/merchant/user/user")
     const sellTaskFlow = () => import("@/views/merchant/sellTaskFlow/sellTaskFlow")
+      const BuyTbFlow = () => import("@/views/merchant/sellTaskFlow/BuyTbFlow")
     const shop = () => import("@/views/merchant/shop/index")
         const taobao = () =>  import("@/views/merchant/shop/taobao") 
         const jingdong = () => import("@/views/merchant/shop/jingdong")
         const pdd = () => import("@/views/merchant/shop/pdd")
         const dy = () => import("@/views/merchant/shop/dy")
         const znzs = () => import("@/views/merchant/shop/znzs")
-
+    const wealth = () => import("@/views/merchant/wealth/wealth")
+        const topUp = () => import("@/views/merchant/wealth/topUp")
+        const rechargeList = () => import("@/views/merchant/wealth/rechargeList")
+        const goldDetail = () => import("@/views/merchant/wealth/goldDetail")
+    const userindex = () => import("@/views/merchant/user/index")
+        const user = () => import("@/views/merchant/user/user")
+        const invitation = () => import("@/views/merchant/user/invitation")
+        const message = () => import("@/views/merchant/user/message")
+        const security = () => import("@/views/merchant/user/security")
 
 const flow = () => import("@/views/flow/flow")
 const tools = () => import("@/views/tools/tools")
@@ -66,7 +74,10 @@ export default new Router({
           ]
         },{
        path:'/merchant/sellTaskFlow',
-       component:sellTaskFlow
+       component:sellTaskFlow,
+       children:[
+         {path:'/merchant/sellTaskFlow/BuyTbFlow',component:BuyTbFlow}
+       ]
           },{
        path:'/merchant/shop',
        component:shop,
@@ -78,14 +89,30 @@ export default new Router({
           { path: '/merchant/shop/dy', component: dy},
           { path: '/merchant/shop/znzs', component: znzs}
       ]
-      },
+      },{
+        path:'/merchant/wealth',
+        component:wealth,
+        redirect:'/merchant/wealth/topUp',  
+        children:[
+           { path: '/merchant/wealth/topUp', component: topUp},
+           { path: '/merchant/wealth/rechargeList', component: rechargeList},
+           { path: '/merchant/wealth/goldDetail', component: goldDetail},
+       ]
+       },
       {
       path:'/merchant/tool',
       component:tool
       },
       {
       path:'/merchant/user',
-      component:user
+      component:userindex,
+      redirect:'/merchant/user/user',  
+      children:[
+        { path: '/merchant/user/user', component: user},
+        { path: '/merchant/user/invitation', component: invitation},
+        { path: '/merchant/user/message', component: message},
+        { path: '/merchant/user/security', component: security},
+      ]
       },
       {
         path:'/merchant/home',
