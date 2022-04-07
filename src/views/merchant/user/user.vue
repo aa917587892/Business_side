@@ -3,9 +3,9 @@
         <h3 class="px-3 py-2 border-bottom" style="margin:0px">
          基本信息 <span  style="font-size:10px;font-weight:500;color:#2e2e2e" >请如实填写信息，以免影响审核通过率！</span> 
         </h3>
-        <div>
-            <el-form ref="form" :model="form" label-width="80px">
-                <el-form-item label="用户头像:">
+        <div class=" flex justify-center align-center mt-3">
+            <el-form ref="form" :model="form" label-width="100px">
+                <el-form-item class=" text-center" >
                     <el-upload
                          class="avatar-uploader"
                         action="https://jsonplaceholder.typicode.com/posts/"
@@ -16,6 +16,18 @@
                         <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                    </el-upload>
                 </el-form-item>
+                <el-form-item label="用户名:">
+                    <el-input v-model="form.text"></el-input>
+                </el-form-item>
+                <el-form-item label="常用QQ号:">
+                    <el-input ></el-input>
+                </el-form-item>
+                <el-form-item label="邮箱Email:">
+                    <el-input ></el-input>
+                </el-form-item>
+                 <el-form-item class=" text-center" >
+                    <el-button type="danger">保存信息</el-button>
+                </el-form-item>
             </el-form>
         </div>
     </div>
@@ -24,7 +36,10 @@
 export default {
      data() {
       return {
-        imageUrl: ''
+        imageUrl: '',
+        form:{
+            text:''
+        }
       };
     },
     methods: {
@@ -60,14 +75,17 @@ export default {
   .avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
+    width: 100px;
+    height: 100px;
+    line-height: 100px;
     text-align: center;
+    border: 2px dotted darkgray;
+    border-radius: 50%;
   }
   .avatar {
-    width: 178px;
-    height: 178px;
+    width: 100px;
+    height: 100px;
     display: block;
+    border-radius: 50%;
   }
 </style>

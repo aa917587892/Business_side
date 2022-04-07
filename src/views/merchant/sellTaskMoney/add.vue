@@ -35,10 +35,10 @@
                             <el-col :span="24">
                                 <el-form-item label="所属平台:">
                                     <el-radio-group v-model="formData.PlatformId">
-                                            <el-radio :label="1" border style="margin:0px 10px 0px 0px;">淘宝/天猫</el-radio>
-                                            <el-radio :label="2" border style="margin:0px 10px 0px 0px;">京东</el-radio>
-                                            <el-radio :label="3" border style="margin:0px 10px 0px 0px;">拼多多</el-radio>
-                                            <el-radio :label="4" border style="margin:0px 10px 0px 0px;">抖音小店</el-radio>
+                                            <el-radio label="淘宝/天猫" border style="margin:0px 10px 0px 0px;">淘宝/天猫</el-radio>
+                                            <el-radio label="京东" border style="margin:0px 10px 0px 0px;">京东</el-radio>
+                                            <el-radio label="拼多多" border style="margin:0px 10px 0px 0px;">拼多多</el-radio>
+                                            <el-radio label="抖音小店" border style="margin:0px 10px 0px 0px;">抖音小店</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
                             </el-col>
@@ -48,8 +48,8 @@
                             <el-col :span="24">
                                 <el-form-item label="返款方式:">
                                     <el-radio-group v-model="formData.RefundType">
-                                        <el-radio :label="1" border style="margin:0px 10px 0px 0px;">平台返款</el-radio>
-                                        <el-radio :label="3" border style="margin:0px 10px 0px 0px;">自己返款</el-radio>
+                                        <el-radio label="1" border style="margin:0px 10px 0px 0px;">平台返款</el-radio>
+                                        <el-radio label="3" border style="margin:0px 10px 0px 0px;">自己返款</el-radio>
 
                                     </el-radio-group>
                                 </el-form-item>
@@ -60,8 +60,8 @@
                             <el-col :span="24">
                                 <el-form-item label="终端类型:">
                                     <el-radio-group v-model="formData.OrderTerminal">
-                                            <el-radio :label="1" border style="margin:0px 10px 0px 0px;">手机端</el-radio>
-                                            <el-radio :label="2" border style="margin:0px 10px 0px 0px;">电脑端</el-radio>
+                                            <el-radio label="1" border style="margin:0px 10px 0px 0px;">手机端</el-radio>
+                                            <el-radio label="2" border style="margin:0px 10px 0px 0px;">电脑端</el-radio>
 
                                     </el-radio-group>
                                 </el-form-item>
@@ -90,14 +90,12 @@
                                     </el-select>
                                 </el-form-item>
                             </el-col>
-
                             <el-col :span="14" style="padding-top:10px;"></el-col>
-
                         </el-row>
                         <el-row :gutter="20">
                             <el-col :span="20">
                                 <el-form-item label="商品链接:" prop="GoodsUrl">
-                                    <el-input v-model="formData.GoodsUrl" v-on:blur="getProdInfo()" width="100%">
+                                    <el-input v-model="formData.GoodsUrl" width="100%">
                                         
 
                                     </el-input>
@@ -151,7 +149,18 @@
                         <el-row :gutter="20">
                             <el-col :span="20">
                                 <el-form-item label="商品主图:" prop="GoodsPic">
-                                    <!-- <eku-upload  attr="GoodsPic" :src="formData.GoodsPic" path="Task"></eku-upload> -->
+                                  
+                                   <el-upload
+                                       action="https://jsonplaceholder.typicode.com/posts/"
+                                       list-type="picture-card"
+                                        :limit='1'
+                                        :on-preview="handlePictureCardPreview"
+                                        :on-remove="handleRemove">
+                                        <i class="el-icon-plus"></i>
+                                        </el-upload>
+                                        <el-dialog :visible.sync="dialogVisible">
+                                        <img width="100%" :src="dialogImageUrl" alt="">
+                                        </el-dialog>
                                 </el-form-item>
                             </el-col>
                         </el-row>
@@ -197,7 +206,6 @@
                                     <el-col :span="9">
                                         <el-button type="text" v-on:click="example()">示例说明</el-button>
                                     </el-col>
-
                                 </el-row>
                                 <el-row :gutter="10">
                                     <el-col :span="24" class="tips">
@@ -248,17 +256,17 @@
                                 <el-row :gutter="10" v-for="(item, index) in formData.KeyWords" :key="index">
 
                                     <el-col :span="12">
-                                        <el-form-item :label="'关键词' + (index+1)+':'" :prop="'KeyWords.' + index +'.KeyWord'" :rules="KeyWordsRules.KeyWord">
+                                        <el-form-item label="关键词" >
                                             <el-input v-model="item.KeyWord" placeholder="关键词"></el-input>
                                         </el-form-item>
                                     </el-col>
                                     <el-col :span="6">
-                                        <el-form-item label-width="0px" :prop="'KeyWords.' + index +'.Describe'" :rules="KeyWordsRules.Describe">
+                                        <el-form-item label-width="0px">
                                             <el-input v-model="item.Describe" placeholder="说明关键词的排序方式和页数"></el-input>
                                         </el-form-item>
                                     </el-col>
                                     <el-col :span="3">
-                                        <el-form-item label-width="0px" :prop="'KeyWords.' + index +'.Num'" :rules="KeyWordsRules.Num">
+                                        <el-form-item label-width="0px" >
                                             <el-input v-model="item.Num" placeholder="数量"></el-input>
                                         </el-form-item>
                                     </el-col>
@@ -277,7 +285,16 @@
                                 <el-row :gutter="20">
                                     <el-col :span="20">
                                         <el-form-item label="二维码图:" prop="OrCodePic">
-                                            <eku-upload v-on:uploaded="upload" attr="OrCodePic" :src="formData.OrCodePic" path="Task"></eku-upload>
+                                           <el-upload
+                                                action="https://jsonplaceholder.typicode.com/posts/"
+                                                list-type="picture-card"
+                                                :on-preview="handlePictureCardPreview"
+                                                :on-remove="handleRemove">
+                                                <i class="el-icon-plus"></i>
+                                                </el-upload>
+                                                <el-dialog :visible.sync="dialogVisible">
+                                                <img width="100%" :src="dialogImageUrl" alt="">
+                                            </el-dialog>
                                         </el-form-item>
                                     </el-col>
                                 </el-row>
@@ -1264,15 +1281,37 @@
 export default {
     data(){
         return{
-            formData:{},
+            formData:{
+                PlatformId:"淘宝/天猫",
+                ShowUnitPrice:1,
+                TaskCount:1 ,//活动数量
+                EnterShopType:1,
+                KeyWords:{
+                    KeyWord:'',
+                    Describe:'',
+                    Num:'',
+                },
+            },
+              dialogImageUrl: '',
+              dialogVisible: false,
             sCost:{},//金币
             rules:{},
             currRefundTypeCustomEnable:1,
+            
             getShopList:{}, //店铺数
             tmplId:{},   //选择模板
             bindShopLink:[], //绑定店铺
             activeNames: ['1','2','3','4','5'] //折叠面板展开
         }
+    },
+    methods: {
+      handleRemove(file, fileList) {
+        console.log(file, fileList);
+      },
+      handlePictureCardPreview(file) {
+        this.dialogImageUrl = file.url;
+        this.dialogVisible = true;
+      }
     }
 }
 </script>
