@@ -7,6 +7,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 //自定义样式
 
 import './assets/css/free.css'
+import './assets/css/common.css'
 
 // import echarts from 'echarts'
 // Vue.prototype.$echarts = echarts
