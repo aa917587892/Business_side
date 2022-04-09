@@ -1,13 +1,16 @@
 <template>
   <div id="app">
-    <top></top>
-    <div class="flex justify-center ">
-      <!-- <leftnav style="width:200px"></leftnav> -->
-      <!-- <div class="ml-1" style="width:1000px;background-color:white"> -->
-        <router-view/>
-        </div>
-      
-    <!-- </div> -->
+
+      <router-view  v-if="$route.meta.showTab" />
+    <div v-else>
+       <top></top>
+       <div class="flex justify-center "> 
+        
+          <router-view/>
+       </div>
+    </div>
+  
+         
   </div>
 </template>
 
@@ -16,10 +19,13 @@ import top from './components/top.vue'
 export default {
   name: 'App',
   components:{
-
     top,
+  },
+  created(){
 
-  }
+  },
+   
+    
 }
 </script>
 

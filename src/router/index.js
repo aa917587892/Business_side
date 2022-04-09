@@ -38,6 +38,8 @@ const flow = () => import("@/views/flow/flow")
 const tools = () => import("@/views/tools/tools")
 const edu = () => import("@/views/edu/edu")
 const news = () => import("@/views/news/news")
+const login =() => import("@/views/login/login")
+const registered =() => import("@/views/login/registered")
 
 
 
@@ -51,7 +53,7 @@ export default new Router({
     {
       path:'/',
       redirect:'/merchant/home' //默认路径
-    
+      
   }, 
   {
     path:'/merchant',
@@ -136,6 +138,19 @@ export default new Router({
   {
     path:'/news',
     component:news
+  },{
+    path:'/login',
+    component:login,
+    meta: {
+			showTab: true   //如果需要显示就加上这个
+		}
+  },
+  {
+    path:'/registered',
+    component:registered,
+    meta: {
+			showTab: true   //如果需要显示就加上这个
+		}
   },
   {path:'*',redirect:'/'},  //路径上面没有的统一去默认路径
   ]

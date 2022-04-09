@@ -1011,7 +1011,7 @@
                         </el-row>
                         <el-collapse-transition>
                             <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.LimitSubProdShow ==1">
-                                <div v-for="(item, index) in formData.LimitSubProd.LimitSubProd" :key="index">
+                                <div v-for="(item, index) in formData.LimitSubProd.LimitSubProds" :key="index" class="mt-1">
                                     <el-row :gutter="10" class="flex align-center">
                                         <el-col :span="7">
                                             <el-form-item   >
@@ -1136,7 +1136,6 @@
                             <el-col :span="7">
                                 <el-form-item label="追加金币:">
                                     <el-input-number v-model="formData.AppendMoney" :precision="2" :min="0" label="追加金币"></el-input-number>
-
                                 </el-form-item>
                             </el-col>
                             <el-col :span="16" class="tips">填入给试客的金币奖励</el-col>
@@ -1285,9 +1284,9 @@ export default {
                 LimitSubProdShow:0, //商品搭配显示
                 LimitSubProd:{    //搭配商品 --链接
                     LimitSubProds:[{
-                            url:'',
-                            title:'',
-                            price:'',
+                            url:'123123',
+                            title:'dfdsfs',
+                            price:'3444',
                             imageUrl:''
                     }],
                 LimitSubProdsNumber:1   //链接数量和
@@ -1376,15 +1375,17 @@ export default {
       removeLimitSubProd(item){
         var index = this.formData.LimitSubProd.LimitSubProds.indexOf(item)
         if (index !== -1) {
-           this.formData.KeyWords.KeyWord.splice(index, 1)
+           this.formData.LimitSubProd.LimitSubProds.splice(index, 1)
         }
       },
 
 
         ///图片上传
        photo_success(res, file) {
-        this.imageUrl = URL.createObjectURL(file.raw);
-        console.log("chengg");
+        this.formData.LimitSubProd.LimitSubProds.imageUrl = URL.createObjectURL(file.raw);
+        // console.log(file.raw);
+        console.log(file)
+
       },
       photo_before(file) {
         const isJPG = file.type === 'image/jpeg';
