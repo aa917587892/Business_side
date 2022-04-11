@@ -8,6 +8,7 @@
         
           <router-view/>
        </div>
+       <foot></foot>
     </div>
   
          
@@ -16,10 +17,12 @@
 
 <script>
 import top from './components/top.vue'
+import foot from './components/foot.vue'
 export default {
   name: 'App',
   components:{
     top,
+    foot
   },
   created(){
 

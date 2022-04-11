@@ -24,6 +24,7 @@ const merchant = () => import("@/views/merchant/index")
         const pdd = () => import("@/views/merchant/shop/pdd")
         const dy = () => import("@/views/merchant/shop/dy")
         const znzs = () => import("@/views/merchant/shop/znzs")
+        const bindingShop = () => import("@/views/merchant/shop/bindingShop")  
     const wealth = () => import("@/views/merchant/wealth/wealth")
         const topUp = () => import("@/views/merchant/wealth/topUp")
         const rechargeList = () => import("@/views/merchant/wealth/rechargeList")
@@ -89,7 +90,8 @@ export default new Router({
           { path: '/merchant/shop/jingdong', component: jingdong},
           { path: '/merchant/shop/pdd', component: pdd},
           { path: '/merchant/shop/dy', component: dy},
-          { path: '/merchant/shop/znzs', component: znzs}
+          { path: '/merchant/shop/znzs', component: znzs},
+          { path:'/merchant/shop/bindingShop',component:bindingShop}
       ]
       },{
         path:'/merchant/wealth',

@@ -1,5 +1,5 @@
 <template>
-    <div class="layui-col-md12" style="height:100px; background-color: white;box-shadow: 0,2,0 rgba(0,0,0,1);margin-bottom: 10px;">
+    <div class="head" style="height:100px; background-color: white;box-shadow: 0,2,0 rgba(0,0,0,1);margin-bottom: 10px;">
 		<div id="" style="display:flex; margin:0 auto;max-width:1200px;padding-top: 30px;">
 			<div class="logo layui-col-md3 " style="height: 55px; width: 180px;   display: inline-block;">
 				<img src="@/assets/images/logo.png" style="width: 100%;height: 100%;">
@@ -31,7 +31,7 @@
 
 </script>
 
-<style>
+<style >
  	body{
 		background-color:#efefef;
 		margin: 0px;
@@ -60,7 +60,7 @@
 	.el-icon-arrow-down {
 		font-size: 12px;
 	}
-	.el-button--primary{
+	.head .el-button--primary{
 		width: 150px;
 		height: 30px;
 		line-height: 30px;
@@ -68,7 +68,7 @@
 		background-color: #e5414f;
 		border: #e5414f;
 	}
-	.el-button--primary:hover{
+ 	.head  .el-button--primary:hover{
 		background-color: #e5414f;
 	}
 	.el-dropdown-menu {

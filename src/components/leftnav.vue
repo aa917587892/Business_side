@@ -8,13 +8,13 @@
                 <i class="el-icon-present" style="color:#409EFF"></i>
                 <span>试用活动</span>
             </template>
-            <router-link to='/merchant/sellTaskMoney/add'><el-menu-item index="11-1">发布活动</el-menu-item></router-link>
-            <el-menu-item index="11-2">活动管理</el-menu-item>
-            <el-menu-item index="11-3">订单管理</el-menu-item>
-            <el-menu-item index="11-9">返款管理<el-badge class="mark" :hidden="0==0" :value="0" /></el-menu-item>
-            <el-menu-item index="11-5">售后服务</el-menu-item>
-            <el-menu-item index="11-4">任务模版</el-menu-item>
-            <el-menu-item index="11-6">拉黑买号</el-menu-item>
+              <router-link to='/merchant/sellTaskMoney/add'><el-menu-item index="11-1">发布活动</el-menu-item></router-link>
+              <router-link to='/merchant/sellTaskMoney/list'><el-menu-item index="11-2">活动管理</el-menu-item></router-link>
+              <router-link to='/merchant/sellTaskMoney/order'><el-menu-item index="11-3">订单管理</el-menu-item></router-link>
+              <router-link to='/merchant/sellTaskMoney/batchlist'><el-menu-item index="11-9">返款管理<el-badge class="mark" :hidden="0==0" :value="1" /></el-menu-item></router-link>
+              <router-link to='/merchant/sellTaskMoney/complaints'><el-menu-item index="11-5">售后服务</el-menu-item></router-link>
+              <router-link to='/merchant/sellTaskMoney/tasktmpl'><el-menu-item index="11-4">任务模版</el-menu-item></router-link>
+              <router-link to='/merchant/sellTaskMoney/blackList'><el-menu-item index="11-6">拉黑买号</el-menu-item></router-link>
              <router-link to='/merchant/sellTaskMoney/costList'><el-menu-item index="11-7">收费标准</el-menu-item></router-link>
         </el-submenu>
             <el-submenu index="3" v-if="'v-if'">

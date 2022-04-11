@@ -1,7 +1,8 @@
 <template>
     <div id="app" style="width:1000px;background-color:white;padding-bottom:100px">  
          <div>
-        <h3 class="px-2 pt-2 pb-2 border-bottom m-0" >我的京东店铺<el-button class="" style="float:right" type="primary"><i class="el-icon-plus"></i> 绑定京东店铺</el-button></h3>
+        <h3 class="px-2 pt-2 pb-2 border-bottom m-0" >我的京东店铺
+      <router-link :to="{ path: 'bindingShop', query: { shop: '京东'}}"><el-button class="" style="float:right;" type="primary" ><i class="el-icon-plus"></i> 绑定京东店铺</el-button></router-link> </h3>
        
         <div class="m-2  p-2 border">
             <div class=" mt-2">
