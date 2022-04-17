@@ -98,7 +98,7 @@
            
 
           <div class="text-center">
-            <el-button class="enter">立即注册</el-button>
+            <el-button class="enter" @click="submitForm">立即注册</el-button>
           </div>
           <div>
             <p
@@ -121,6 +121,9 @@
   </div>
 </template>
 <script>
+import {getHomeMultidata} from '@/network/login'
+
+
 export default {
   data() {
     return {
@@ -144,6 +147,43 @@ export default {
      }
     };
   },
+  created(){
+    // getHomeMultidata().then(res=>{
+    //   console.log(res);
+    // })
+  },
+  methods:{
+      submitForm(){
+          // this.$axios({
+          //         method: "post",
+          //         url: "apis/api/common/register",
+          //         data: {
+          //             usertype:2,
+          //             username: "hyh",
+          //             password: "123456",
+          //             mobile:'15487985491',
+          //             // code: null,
+          //             // qq: null
+          //         }
+          //     }).then((res)=>{
+          //         console.log(res);
+          //         console.log("成功");
+          //     })
+          const data = { 
+                      userType:2,
+                      userName: "hyh",
+                      password: "123456",
+                      mobile:'15487985491',
+                      // code: null,
+                      // qq: null
+                  }
+          getHomeMultidata(data).then(res => {
+            console.log(res);
+          })
+
+      },
+     
+  }
 };
 </script>
 <style scoped>

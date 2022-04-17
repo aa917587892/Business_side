@@ -5,12 +5,30 @@
 const path = require('path')
 
 module.exports = {
+ 
   dev: {
 
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      // ["/dev-api"]:{
+      //   target:'http://daoyi-admin:90',
+      //     changeOrigin:true,
+      //       pathRewrite: {
+      //           ['^' + "/dev-ap"]: ''
+      //       }
+      //   }
+      '/apis': {
+        target: 'http://daoyi-admin:90',
+        secure: false,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/apis': ''
+        }
+      }
+      
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST

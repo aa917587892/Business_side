@@ -23,7 +23,7 @@
                             <p style="font-size:14px;"><router-link to="" class=" text-light-black">忘记密码</router-link> </p>
                         </div>
                         <div class=" text-center ">
-                             <el-button class="enter"  >立即登录</el-button>
+                             <el-button class="enter" @click="login_click" >立即登录</el-button>
                         </div>
                         <div>
                             <p style="font-size:14px;text-align:center" class="text-light-black"> 没有账号?<router-link to="/registered" style="color:#3da3eb" class="text-light-black"> 注册</router-link> </p>
@@ -49,6 +49,24 @@ export default {
                 }
            
         }
+    },
+    methods:{
+            login_click(){
+                  this.$axios({
+                  method: "post",
+                  url: "apis/api/common/index",
+                  data: {              
+                      username: "admin",
+                      password: "123456",
+                      // code: null,
+                      // qq: null
+                  }
+              }).then((res)=>{
+                  console.log(res);
+                  console.log("成功");
+              })
+
+            }
     }
 }
 </script>
