@@ -20,7 +20,7 @@
 				<el-dropdown-menu slot="dropdown">
 					<el-dropdown-item>金币</el-dropdown-item>
 					<el-dropdown-item>个人中心</el-dropdown-item>
-					<el-dropdown-item>退出登陆</el-dropdown-item>
+				<router-link to="/login"><el-dropdown-item>退出登陆</el-dropdown-item></router-link>	
 				</el-dropdown-menu> 
 			</el-dropdown>
 		</div>	
