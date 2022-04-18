@@ -1,5 +1,5 @@
 <template>
-    <div style="width:1050px;background-color:white">
+    <div style="width:1050px;background-color:white" v-if="primary">
          <h2 class="px-3 py-2 border-bottom" style="margin:0px">
         发布活动
          </h2>
@@ -24,18 +24,17 @@
                                 <el-form-item label="活动模版:">
                                     <el-select v-model="tmplId" placeholder="选择活动模版" filterable>
                                         <el-option label="选择活动模版" :value="0"></el-option>
+                                        <el-option v-for="(item,index) in primary.template" :key="index" :label="item.template_title" :value="0"></el-option>
                                     </el-select>
                                 </el-form-item>
                             </el-col>
                         </el-row>
 
-
-
                         <el-row :gutter="20">
                             <el-col :span="24">
                                 <el-form-item label="所属平台:">
-                                    <el-radio-group v-model="formData.PlatformId">
-                                            <el-radio label="淘宝/天猫" border style="margin:0px 10px 0px 0px;">淘宝/天猫</el-radio>
+                                    <el-radio-group v-model="formData.PlatformId">                             
+                                            <el-radio :label="item.title" border style="margin:0px 10px 0px 0px;" v-for="(item,index) in primary.platform" :key="index" >淘宝/天猫</el-radio>
                                             <el-radio label="京东" border style="margin:0px 10px 0px 0px;">京东</el-radio>
                                             <el-radio label="拼多多" border style="margin:0px 10px 0px 0px;">拼多多</el-radio>
                                             <el-radio label="抖音小店" border style="margin:0px 10px 0px 0px;">抖音小店</el-radio>
@@ -84,9 +83,9 @@
                         <el-row :gutter="20">
                             <el-col :span="8">
                                 <el-form-item label="商品类目:" prop="CategoryId">
-                                    <el-select v-model="formData.CategoryId">
-                                        <el-option label="请选择商品类目" :value="0"></el-option>
-                                            <el-option label="综合商品" :value="9"></el-option>
+                                    <el-select v-model="formData.CategoryId" placeholder="请选择商品类目">
+                                        <el-option label="请选择商品类目" v-for="(item,index) in primary.category" :key="index" :value="0"></el-option>
+                                        <el-option label="综合商品" :value="9"></el-option>
                                     </el-select>
                                 </el-form-item>
                             </el-col>
@@ -398,7 +397,7 @@
                                 <el-divider></el-divider>
                             </el-col>
                         </el-row>
-                        <el-row :gutter="20" v-if="1&&formData.PlatformId!='4'">
+                        <el-row :gutter="20" v-if="primary.added_value.check_fraud_show ">
                             <el-col :span="9">
                                 <el-form-item label="照妖镜验号:">
                                     <el-radio-group v-model="formData.LimitZyjCheckAccount">
@@ -408,9 +407,9 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="15" class="tips">注：自动过滤降全号，建议开启，增值费 +{{sCost.limitZyjCheckAccount}} 金币</el-col>
+                            <el-col :span="15" class="tips">注：自动过滤降全号，建议开启，增值费 +{{primary.added_value.check_fraud_merchant_fee}} 金币</el-col>
                         </el-row>
-                        <el-row :gutter="20" v-if="1&&formData.PlatformId!='4'">
+                        <el-row :gutter="20" v-if="primary.added_value.check_brain_show =1">
                             <el-col :span="9">
                                 <el-form-item label="电商大脑验号:">
                                     <el-radio-group v-model="formData.LimitDsdnCheckAccount">
@@ -420,12 +419,12 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="15" class="tips">注：自动过滤降全号，建议开启，增值费 +{{sCost.limitDsdnCheckAccount}} 金币</el-col>
+                            <el-col :span="15" class="tips">注：自动过滤降全号，建议开启，增值费 +{{primary.added_value.need_follow_shop_merchant_fee}} 金币</el-col>
                         </el-row>
                         <el-row :gutter="20" v-if="1&&formData.PlatformId!='4'">
                             <el-col :span="8">
                                 <el-form-item label="要求买号信誉:">
-                                    <el-select v-model="formData.mhry" >
+                                    <!-- <el-select v-model="formData.mhry" >
                                             <el-option  label="不要求" value="不要求" ></el-option>
                                             <el-option  label="白号"  value="白号" ></el-option>
                                             <el-option label="一心号金币" value="一心号金币" ></el-option>
@@ -438,8 +437,11 @@
                                             <el-option label="三钻号金币" value="三钻号金币"></el-option>
                                             <el-option label="四钻号金币" value="四钻号金币"></el-option>
                                             <el-option label="五钻及以上金币" value="五钻及以上金币"></el-option>
-                                    </el-select>
-                                    
+                                    </el-select> -->
+                                      <el-select v-model="formData.mhry" >
+                                            <el-option  label="不要求" value="不要求" ></el-option>
+                                            <el-option  :label="item.title" :value="item.title" v-for="(item,index) in primary.credit_list" :key="index" ></el-option>
+                                      </el-select>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="6" class="tips">选择此项将收取对应的增值费</el-col>
@@ -454,9 +456,9 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="15" class="tips">系统对接单买号、关键词自动打标，增加下单权重，增值费+{{sCost.limitBuyerMark}}金币/单</el-col>
+                            <el-col :span="15" class="tips">系统对接单买号、关键词自动打标，增加下单权重，增值费+{{primary.added_value.buyer_auto_mark_merchant_fee}}金币/单</el-col>
                         </el-row>
-                        <el-row :gutter="20" v-if="1">
+                        <el-row :gutter="20" v-if="primary.added_value.need_follow_shop_show =1">
                             <el-col :span="9">
                                 <el-form-item label="要求关注店铺:">
                                     <el-radio-group v-model="formData.LimitCollectShop">
@@ -466,9 +468,9 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="6" class="tips">选择此项将收取 {{sCost.limitCollectShop}} 金币 增值费</el-col>
+                            <el-col :span="6" class="tips">选择此项将收取 {{primary.added_value.need_follow_shop_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
-                        <el-row :gutter="20" v-if="1">
+                        <el-row :gutter="20" v-if="primary.added_value.need_collect_product_show">
                             <el-col :span="9">
                                 <el-form-item label="要求收藏宝贝:">
                                     <el-radio-group v-model="formData.LimitCollectGoods">
@@ -478,10 +480,10 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="6" class="tips">选择此项将收取 {{sCost.limitCollectGoods}} 金币 增值费</el-col>
+                            <el-col :span="6" class="tips">选择此项将收取 {{primary.added_value.need_collect_product_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
 
-                        <el-row :gutter="20" v-if="1">
+                        <el-row :gutter="20" v-if="primary.added_value.need_add_cart_show">
                             <el-col :span="9">
                                 <el-form-item label="要求加入购物车:">
                                     <el-radio-group v-model="formData.LimitAddShoppingCart">
@@ -491,9 +493,9 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="6" class="tips">选择此项将收取 {{sCost.limitAddShoppingCart}} 金币 增值费</el-col>
+                            <el-col :span="6" class="tips">选择此项将收取 {{primary.added_value.need_add_cart_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
-                        <el-row :gutter="20" v-if="1&&formData.PlatformId!='4'">
+                        <el-row :gutter="20" v-if="primary.added_value.need_service_talk_show">
                             <el-col :span="9">
                                 <el-form-item label="要求和客服聊天:">
                                     <el-radio-group v-model="formData.LimitChat">
@@ -503,9 +505,9 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="6" class="tips">选择此项将收取 {{sCost.limitChat}} 金币 增值费</el-col>
+                            <el-col :span="6" class="tips">选择此项将收取 {{primary.added_value.need_service_talk_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
-                        <el-row :gutter="20" v-if="1">
+                        <el-row :gutter="20" v-if="primary.added_value.need_verify_buyer_show">
                             <el-col :span="9">
                                 <el-form-item label="要求审核买号:">
                                     <el-radio-group v-model="formData.LimitAuditAccount">
@@ -515,11 +517,11 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="6" class="tips">选择此项将收取 {{sCost.limitAuditAccount}} 金币 增值费</el-col>
+                            <el-col :span="6" class="tips">选择此项将收取 {{primary.added_value.need_verify_buyer_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
 
 
-                        <el-row :gutter="20" v-if="1&&formData.PlatformId!='4'">
+                        <el-row :gutter="20" v-if="primary.added_value.huabei_credit_pay_show">
                             <el-col :span="9">
                                 <el-form-item label="花呗/信用卡付款:">
                                     <el-radio-group v-model="formData.LimitCreditCard">
@@ -529,10 +531,10 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="8" class="tips">允许花呗/信用卡付款 增值费 +{{sCost.limitCreditCard}} 金币/单 </el-col>
+                            <el-col :span="8" class="tips">允许花呗/信用卡付款 增值费 +{{primary.added_value.huabei_credit_pay_merchant_fee}} 金币/单 </el-col>
                         </el-row>
 
-                        <el-row :gutter="20" v-if="1">
+                        <el-row :gutter="20" v-if="primary.added_value.need_buyer_sex_show">
                             <el-col :span="10">
                                 <el-form-item label="要求买号性别:">
                                     <el-radio-group v-model="formData.LimitSex">
@@ -543,72 +545,46 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="6" class="tips">选择此项将收取 {{sCost.limitSex}} 金币 增值费</el-col>
+                            <el-col :span="6" class="tips">选择此项将收取 {{primary.added_value.need_buyer_sex_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
                         
-                        <el-row :gutter="20" v-if="0">
+                        <el-row :gutter="20" v-if="primary.added_value.need_buyer_age_range_show">
                             <el-col :span="9">
-                                <el-form-item label="要求买号年龄:">
-                                    <el-select v-model="formData.LimitAge">
-                                        <el-option label="不要求" :value="0"></el-option>
-                                            <el-option label="20岁以下" :value="1"></el-option>
-                                            <el-option label="21-25岁" :value="2"></el-option>
-                                            <el-option label="26-32岁" :value="3"></el-option>
-                                            <el-option label="33-40岁" :value="4"></el-option>
-                                            <el-option label="41岁以上" :value="5"></el-option>
-                                    </el-select>
+                                <el-form-item label="要求买号年龄:">            
+                                     <el-select v-model="formData.LimitAge">
+                                         <el-option label="不要求" :value="0"  ></el-option>
+                                         <el-option :label="item" :value="item" v-for="(item,index) in primary.age_range" :key="index"   ></el-option>
+                                     </el-select>
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="6" class="tips">选择此项将收取 {{sCost.limitAge}} 金币 增值费</el-col>
+                            <el-col :span="6" class="tips">选择此项将收取 {{primary.added_value.need_buyer_age_range_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
-                        <el-row :gutter="20" v-if="1">
+                        <el-row :gutter="20" v-if="primary.added_value.buyer_area_limited_show">
                             <el-col :span="11">
                                 <el-form-item label="限制买号地区:">
-                                    <el-select v-model="formData.LimitArea" multiple style="width:100%;">
-                                            <el-option label="北京" value="北京"></el-option>
-                                            <el-option label="天津" value="天津"></el-option>
-                                            <el-option label="河北省" value="河北省"></el-option>
-                                            <el-option label="山西省" value="山西省"></el-option>
-                                            <el-option label="内蒙古自治区" value="内蒙古自治区"></el-option>
-                                            <el-option label="辽宁省" value="辽宁省"></el-option>
-                                            <el-option label="吉林省" value="吉林省"></el-option>
-                                            <el-option label="黑龙江省" value="黑龙江省"></el-option>
-                                            <el-option label="青海省" value="青海省"></el-option>
-                                            <el-option label="宁夏回族自治区" value="宁夏回族自治区"></el-option>
-                                            <el-option label="新疆维吾尔自治区" value="新疆维吾尔自治区"></el-option>
-                                            <el-option label="台湾" value="台湾"></el-option>
-                                            <el-option label="香港特别行政区" value="香港特别行政区"></el-option>
-                                            <el-option label="澳门特别行政区" value="澳门特别行政区"></el-option>
-                                            <el-option label="钓鱼岛" value="钓鱼岛"></el-option>
-                                            <el-option label="海南省" value="海南省"></el-option>
-                                            <el-option label="重庆" value="重庆"></el-option>
-                                            <el-option label="四川省" value="四川省"></el-option>
-                                            <el-option label="贵州省" value="贵州省"></el-option>
-                                            <el-option label="云南省" value="云南省"></el-option>
-                                            <el-option label="西藏自治区" value="西藏自治区"></el-option>
-                                            <el-option label="陕西省" value="陕西省"></el-option>
-                                            <el-option label="甘肃省" value="甘肃省"></el-option>
-                                            <el-option label="河南省" value="河南省"></el-option>
-                                            <el-option label="湖北省" value="湖北省"></el-option>
-                                            <el-option label="湖南省" value="湖南省"></el-option>
-                                            <el-option label="广东省" value="广东省"></el-option>
-                                            <el-option label="广西壮族自治区" value="广西壮族自治区"></el-option>
-                                            <el-option label="上海" value="上海"></el-option>
-                                            <el-option label="江苏省" value="江苏省"></el-option>
-                                            <el-option label="浙江省" value="浙江省"></el-option>
-                                            <el-option label="安徽省" value="安徽省"></el-option>
-                                            <el-option label="福建省" value="福建省"></el-option>
-                                            <el-option label="江西省" value="江西省"></el-option>
-                                            <el-option label="山东省" value="山东省"></el-option>
-                                    </el-select>
+   
+                                       <el-select  v-model="formData.LimitArea" placeholder="请选择限制买号地区" multiple style="width:100%;">
+                                            <el-option-group
+                                            v-for="(group,index) in primary.region"
+                                            :key="index"
+                                            :label="group.title">
+                                            <el-option
+                                                v-for="item in group.province_list"
+                                                :key="item.id"
+                                                :label="item.title"
+                                                :value="item.id"
+                                                >
+                                            </el-option>
+                                            </el-option-group>
+                                        </el-select>
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="13" class="tips">被选中的地区将禁止接活动 选择此项将收取 {{sCost.limitArea}} 金币 增值费</el-col>
+                            <el-col :span="13" class="tips">被选中的地区将禁止接活动 选择此项将收取 {{primary.added_value.buyer_area_limited_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
 
-                        <el-row :gutter="20" v-if="1">
+                        <el-row :gutter="20" v-if="primary.added_value.buyer_category_limited_show">
                             <el-col :span="11">
                                 <el-form-item label="要求买号类目:">
                                     <el-select v-model="formData.LimitCategory" multiple :multiple-limit="3" style="width:100%;">
@@ -617,7 +593,7 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="13" class="tips">买号的常购类目中包含被选中的类目将允许接活动 选择此项将收取 {{sCost.limitCategory}} 金币 增值费</el-col>
+                            <el-col :span="13" class="tips">买号的常购类目中包含被选中的类目将允许接活动 选择此项将收取 {{primary.added_value.buyer_category_limited_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
                     </el-collapse-item>
                 </el-card>
@@ -646,7 +622,7 @@
                         </el-row>
 
 
-                        <el-row :gutter="20" v-if="0">
+                        <el-row :gutter="20" v-if="1">
                             <el-col :span="7">
                                 <el-form-item label="搭配商品数量:">
                                     <el-input-number v-model="formData.CollocationNum" :precision="0" :min="0" :max="10" label="商品数量"></el-input-number>
@@ -655,7 +631,7 @@
                             </el-col>
                             <el-col :span="16" class="tips">搭配商品购买的数量 要求此项将收取 {{sCost.collocationNum}} 金币/个 增值费</el-col>
                         </el-row>
-                        <el-row :gutter="20" v-if="1&&formData.PlatformId!='4'">
+                        <el-row :gutter="20" v-if="primary.added_value.delay_buy_time_show">
                             <el-col :span="7">
                                 <el-form-item label="延迟购买时间:">
                                     <el-input-number v-model="formData.DelayBuyDay" :min="0" :max="240" label=""></el-input-number>
@@ -665,9 +641,9 @@
                             </el-col>
                             
                             <el-col :span="6" class="tips" style="margin-top:4px;">*单位：小时 选0为不启用此项</el-col>
-                            <el-col :span="5" class="tips" style="margin-top:4px;">此项将收取 {{sCost.delayBuyDay}} 金币 增值费</el-col>
+                            <el-col :span="5" class="tips" style="margin-top:4px;">此项将收取 {{primary.added_value.delay_buy_time_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
-                        <el-row :gutter="0" v-if="1&&formData.PlatformId!='4'">
+                        <el-row :gutter="0" v-if="primary.added_value.before_in_shop_compare_show">
                             <el-col :span="17">
                                 <el-form-item label="进店前货比:">
                                     <el-radio-group v-model="formData.ContrastNum">
@@ -692,10 +668,10 @@
                                     </el-popover>
                                 </el-form-item>
                             </el-col>
-                            <el-col :span="4" style="margin-left:10px;" class="tips">此项收{{sCost.contrastNum}}金币/家增值费</el-col>
+                            <el-col :span="4" style="margin-left:10px;" class="tips">此项收{{primary.added_value.before_in_shop_compare_merchant_fee}}金币/家增值费</el-col>
                         </el-row>
 
-                        <el-row :gutter="0" v-if="1&&formData.PlatformId!='4'">
+                        <el-row :gutter="0" v-if="primary.added_value.after_in_shop_compare_show">
                             <el-col :span="17">
                                 <el-form-item label="进店后货比:">
                                     <el-radio-group v-model="formData.ContrastNumLater">
@@ -722,7 +698,7 @@
                             </el-col>
                             <el-col :span="4" style="margin-left:10px;" class="tips">此项收{{sCost.contrastNumLater}}金币/家增值费</el-col>
                         </el-row>
-                        <el-row :gutter="20" v-if="1&&formData.PlatformId!='4'">
+                        <el-row :gutter="20" v-if="primary.added_value.view_product_nums_show">
                             <el-col :span="14">
                                 <el-form-item label="浏览商品数量:">
                                     <el-radio-group v-model="formData.BrowseNum">
@@ -734,11 +710,11 @@
 
                                 </el-form-item>
                             </el-col>
-                            <el-col :span="9" class="tips">要求试客浏览副宝贝，将收取 {{sCost.browseNum}} 金币 增值费</el-col>
+                            <el-col :span="9" class="tips">要求试客浏览副宝贝，将收取 {{primary.added_value.after_in_shop_compare_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
 
 
-                        <el-row :gutter="0" v-if="1">
+                        <el-row :gutter="0" v-if="primary.added_value.praise_type_show">
                             <el-col :span="18">
                                 <el-form-item label="好评方式:">
                                     <el-radio-group v-model="formData.RemarkType">
@@ -762,7 +738,7 @@
                                     </div>
                                 </el-popover>小时
                             </el-col>
-                            <el-col :span="3" class="tips">收取 {{}} 金币增值费</el-col>
+                            <el-col :span="3" class="tips">收取 {{primary.added_value.praise_type_2_merchant_fee}} 金币增值费</el-col>
                         </el-row>
                         <el-collapse-transition>
                             <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.RemarkType==2">
@@ -1263,6 +1239,7 @@
     </div>    
 </template>
 <script>
+import {get_add,post_computed,post_add} from'@/network/merchant/sellTaskMoney/add'
 export default {
     data(){
         return{
@@ -1332,8 +1309,19 @@ export default {
             getShopList:{}, //店铺数
             tmplId:{},   //选择模板
             bindShopLink:[], //绑定店铺
-            activeNames: ['1','2','3','4','5'] //折叠面板展开
+            activeNames: ['1','2','3','4','5'], //折叠面板展开
+
+            primary:"" //基础属性
+
         }
+    },
+    created(){
+        get_add().then(res=>{
+            if(res.code==1){
+                this.primary = res.data
+            }
+            console.log( this.primary)
+        })
     },
     computed:{
         ClipList(){

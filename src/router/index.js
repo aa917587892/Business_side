@@ -157,4 +157,18 @@ export default new Router({
   {path:'*',redirect:'/'},  //路径上面没有的统一去默认路径
   ]
 })
-
+// 导航守卫
+// 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
+// router.beforeEach((to, from, next) => {
+//   if (to.path === '/login') {
+//     next();
+//   } else {
+//     let token = localStorage.getItem('token');
+ 
+//     if (token === null || token === '') {
+//       next('/login');
+//     } else {
+//       next();
+//     }
+//   }
+// });

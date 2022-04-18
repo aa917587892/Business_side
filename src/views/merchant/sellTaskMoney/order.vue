@@ -82,12 +82,10 @@
                             </div>                  
                         </template>
                         </el-table-column> 
-                        <el-table-column  label="商品图">
-                            <template >
-                                <div class="grid-content bg-purple">
-                                    <img :lazy="true" :src="imgUrl" />
-                                </div>
-                            </template>                      
+                        <el-table-column  label="商品图" >
+                             <template v-slot="scope">
+                                <img :src="scope.row.imgUrl" alt="" width="90" height="90">
+                            </template>                   
                         </el-table-column>
                         <el-table-column  label="活动商品"  prop="goods"> </el-table-column>
                         <el-table-column  label="商品金额"  prop="money"> </el-table-column>
@@ -127,7 +125,7 @@ export default {
           state:'已完成',
           money:'19.2',
           reality_momey:'19.2', //实际支付
-        //imgUrl:require('../../../assets/images/head.jpg'),
+         imgUrl:require('../../../assets/images/head.jpg'),
           operation:'',
           courier_name:'顺丰',  //快递名字
           courier_ID:'45648438435248642451',    //快递编号
@@ -136,34 +134,61 @@ export default {
           fhdate:'2020.12.01',
           shdate:'2020.12.02'
         }, {
-          id: '12987123',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333',
+           id: '10333',
+          shopID:'1234',
+          orderID:'4854200023955217833',
+          goods:'盲盒幸运盒子大捡漏金镶玉羊脂玉和田玉天然翡',
+          shop:' 道义时光',
+          username:'Zhh13465676553',
+          state:'已完成',
+          money:'19.2',
+          reality_momey:'19.2', //实际支付
+         imgUrl:require('../../../assets/images/head.jpg'),
+          operation:'',
+          courier_name:'顺丰',  //快递名字
+          courier_ID:'45648438435248642451',    //快递编号
+          fkdate:'2020.12.12',
+          jddate:'2020.12.03',
+          fhdate:'2020.12.01',
+          shdate:'2020.12.02'
         //   imgUrl: require('../../../assets/images/login.jpg') 
         }, {
-          id: '12987125',
-          
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333',
-           imgUrl:'../../../assets/images/head.jpg'
+          id: '10333',
+          shopID:'1234',
+          orderID:'4854200023955217833',
+          goods:'盲盒幸运盒子大捡漏金镶玉羊脂玉和田玉天然翡',
+          shop:' 道义时光',
+          username:'Zhh13465676553',
+          state:'已完成',
+          money:'19.2',
+          reality_momey:'19.2', //实际支付
+         imgUrl:require('../../../assets/images/head.jpg'),
+          operation:'',
+          courier_name:'顺丰',  //快递名字
+          courier_ID:'45648438435248642451',    //快递编号
+          fkdate:'2020.12.12',
+          jddate:'2020.12.03',
+          fhdate:'2020.12.01',
+          shdate:'2020.12.02'
         }, {
-          id: '12987126',
-          name: '好滋好味鸡蛋仔',
-          category: '江浙小吃、小吃零食',
-          desc: '荷兰优质淡奶，奶香浓而不腻',
-          address: '上海市普陀区真北路',
-          shop: '王小虎夫妻店',
-          shopId: '10333',
-           imgUrl:'../../../assets/images/head.jpg'
-        }]
+           id: '10333',
+          shopID:'1234',
+          orderID:'4854200023955217833',
+          goods:'盲盒幸运盒子大捡漏金镶玉羊脂玉和田玉天然翡',
+          shop:' 道义时光',
+          username:'Zhh13465676553',
+          state:'已完成',
+          money:'19.2',
+          reality_momey:'19.2', //实际支付
+         imgUrl:require('../../../assets/images/head.jpg'),
+          operation:'',
+          courier_name:'顺丰',  //快递名字
+          courier_ID:'45648438435248642451',    //快递编号
+          fkdate:'2020.12.12',
+          jddate:'2020.12.03',
+          fhdate:'2020.12.01',
+          shdate:'2020.12.02'
+        },{}]
         }
        
     }

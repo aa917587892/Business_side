@@ -2,12 +2,19 @@ import axios from 'axios'
 
 export function request(config){
      const instance =axios.create({
-         baseURL:'apis/',
+         baseURL:'/apis/',
          timeout: 5000
      })
     //  axios的拦截器
     //  请求拦截的作用 
-     instance.interceptors.response.use(config =>{
+     instance.interceptors.request.use(config =>{
+        if (localStorage.getItem('token')) {
+            config.headers['token']  = localStorage.getItem('token');
+            console.log(config.headers);
+          }
+        // if (localStorage.getItem("token")) {
+        //     config.headers.Authorization = "JWT " + localStorage.getItem("token");
+        //   }
          return config
      },err =>{
         console.log(err);

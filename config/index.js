@@ -20,7 +20,8 @@ module.exports = {
       //       }
       //   }
       '/apis': {
-        target: 'http://daoyi-admin:90',
+        // target: 'http://daoyi-admin:90',
+        target: 'http://daoyi-admin',
         secure: false,
         changeOrigin: true,
         pathRewrite: {

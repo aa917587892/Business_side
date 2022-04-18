@@ -1,6 +1,6 @@
 <template>
-  <div id="app" style="width:1050px;background-color:white;padding-bottom:30px">
-    <div class="flex">
+  <div id="app" style="width:1050px;background-color:white;padding-bottom:30px"  >
+    <div class="flex" >
       <div class="nav flex-1">
         <div class="mx-2 my-1 border p-1">
           <span
@@ -40,7 +40,7 @@
             >
               <p style="margin-top: 10px"></p>
               <h2 style="color: rgb(64, 158, 255)">
-                15505665656
+                {{homedata.user_info.mobile}}
                 <span style="margin-left: 10px"
                   ><i
                     title="已绑定手机"
@@ -57,8 +57,8 @@
               <p></p>
               <p style="margin-top: 15px">
                 <img
-                  src="@/assets/images/zhuanshi.jpg"
-                  title="钻石"
+                  :src="homedata.user_info.grade.grade_img"
+                  :title="homedata.user_info.grade.title"
                   width="90"
                 />
               </p>
@@ -76,11 +76,10 @@
                       color: red;
                       font-size: 18px;
                       font-weight: bold;
-                      margin-left: 15px;
-                    "
-                    >773.41</span
-                  ></span
-                >
+                      margin-left: 15px;">
+                    {{homedata.user_info.coins}}
+                    </span>
+                    </span>
                 <button
                   type="button"
                   class="el-button el-button--success el-button--small is-round"
@@ -101,7 +100,9 @@
                       font-weight: bold;
                       margin-left: 15px;
                     "
-                    >66878</span
+                    >
+                    {{homedata.user_info.score}}
+                    </span
                   ></span
                 >
                 距离升级还差：80000 积分
@@ -115,17 +116,16 @@
           <span   class="list_1 border "><i class="el-icon-s-order"></i> 充值明细</span>
           <span   class="list_1 border "><i class="el-icon-s-finance"></i> 金币明细</span>
         </div>
-        <div id="myChart" class="border mx-2 my-1 pt-1 pl-1" style="height:340px;">
-        </div>
+        <div id="myChart" class="border mx-2 my-1 pt-1 pl-1" style="height:340px;"> </div>
         <div class="mx-2">
           <el-tabs type="border-card">
             <el-tab-pane label="试用活动汇总" >
               <div class=" flex justify-center align-center">
-                 <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 mx-1 border">待审核活动(<span>0</span>)</div> </router-link>
+                 <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 mx-1 border">待审核活动(<span>{{homedata.tast_data.task_0}}</span>)</div> </router-link>
                  <img src="@/assets/images/home/jiantou.png"  style="object-fit: cover;width:30px;height:20px">
-                  <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 mx-1  border">进行活动中(<span>0</span>)</div> </router-link>
+                  <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 mx-1  border">进行活动中(<span>{{homedata.tast_data.task_1}}</span>)</div> </router-link>
                   <img src="@/assets/images/home/jiantou.png"  style="object-fit: cover;width:30px;height:20px">
-                   <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 mx-1  border">待审核活动(<span>0</span>)</div> </router-link> 
+                   <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 mx-1  border">待审核活动(<span>{{homedata.tast_data.task_3}}</span>)</div> </router-link> 
               </div>
             </el-tab-pane>
           </el-tabs>
@@ -134,16 +134,16 @@
           <el-tabs type="border-card">
             <el-tab-pane label="试用订单汇总" >
               <div class=" flex flex-wrap justify-center align-center">
-                 <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1 border">待审核订单(<span>0</span>)</div> </router-link>
+                 <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1 border">待审核订单(<span>{{homedata.order_data.order_1}}</span>)</div> </router-link>
                  <img src="@/assets/images/home/jiantou.png"  style="object-fit: cover;width:30px;height:20px">
-                  <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1  border">已接单订单(<span>0</span>)</div> </router-link>
+                  <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1  border">已接单订单(<span>{{homedata.order_data.order_1}}</span>)</div> </router-link>
                   <img src="@/assets/images/home/jiantou.png"  style="object-fit: cover;width:30px;height:20px">
-                   <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1  border">已找到商品(<span>0</span>)</div> </router-link> 
-                  <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1 border">已完成订单(<span>0</span>)</div> </router-link>
+                   <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1  border">已找到商品(<span>{{homedata.order_data.order_3}}</span>)</div> </router-link> 
+                  <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1 border">已完成订单(<span>{{homedata.order_data.order_6}}</span>)</div> </router-link>
                  <img src="@/assets/images/home/jiantou.png"  style="object-fit: cover;width:30px;height:20px">
-                  <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1  border">待完成订单(<span>0</span>)</div> </router-link>
+                  <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1  border">待完成订单(<span>{{homedata.order_data.order_5}}</span>)</div> </router-link>
                   <img src="@/assets/images/home/jiantou.png"  style="object-fit: cover;width:30px;height:20px">
-                   <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1  border">代发货订单(<span>0</span>)</div> </router-link> 
+                   <router-link to="/shop/taobao.vue"><div class="flex-1 px-5 py-2 m-1  border">代发货订单(<span>{{homedata.order_data.order_3}}</span>)</div> </router-link> 
               </div>
             </el-tab-pane>
           </el-tabs>
@@ -168,6 +168,7 @@
 <script>
 import top from "@/components/top.vue";
 import leftnav from "@/components/leftnav.vue";
+import {get_home} from'@/network/merchant/home'
 
 // 模板
 let echarts = require('echarts/lib/echarts')
@@ -192,10 +193,22 @@ export default {
         gonggao:
           "绑店铺要设置复购时间，照妖镜验号自动审核，电商大脑手动 2021-01-22",
       },
+      homedata:""
     };
   },
+  created(){
+      get_home().then(res=>{
+        if(res.code=1){  
+          this.homedata=res.data
+        
+          console.log(this.homedata);
+        }
+        
+      })
+  
+  },
   mounted(){
-      this.myEcharts()
+       this.myEcharts()
       // this.drawLine()
       
   },
