@@ -1,0 +1,45 @@
+
+formData:{
+    PlatformId:"1",     //平台类型
+    ShowUnitPrice:1,    //商品单价
+    TaskCount:1 ,       //活动数量
+    RefundType:"1",     //平台返款
+    OrderTerminal:"1",  //手机端
+    ShopId:'',          //所属店铺
+    CategoryId:'',        //商品类目
+    GoodsUrl:'',            //商品链接
+    GoodsName:'',           //商品名称
+    GoodsSku:'',        //商品规格
+    ShowUnitPrice:'',   //商品单价
+    PaiNum:'',        //每单买
+    TaskCount:'',       //活动数量
+    IsNeedScreenshot:'',    //是否截图
+    LimitDetailsKey:'',  //商品核对
+    DetailsKey:'' ,  //商品关键词
+    
+
+    EnterShopType:1,
+    screenClipListID:0,      //卡片类型
+    RemarkType:"",      //好评方式
+    AppendRemarkType:"1",
+    mhry:'不要求',
+    KeyWords:{               
+        KeyWord:[{
+            value:'',
+        }],
+        Describe:'',
+        Num:'',
+        KeyWordnumber:2,        
+    },
+    LimitSubProdShow:0, //商品搭配显示
+    LimitSubProd:{    //搭配商品 --链接
+        LimitSubProds:[{
+                url:'123123',
+                title:'dfdsfs',
+                price:'3444',
+                imageUrl:''
+        }],
+    LimitSubProdsNumber:1   //链接数量和
+    }
+    
+}

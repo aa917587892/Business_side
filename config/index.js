@@ -12,16 +12,10 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // ["/dev-api"]:{
-      //   target:'http://daoyi-admin:90',
-      //     changeOrigin:true,
-      //       pathRewrite: {
-      //           ['^' + "/dev-ap"]: ''
-      //       }
-      //   }
       '/apis': {
         // target: 'http://daoyi-admin:90',
-        target: 'http://daoyi-admin',
+        // target: 'http://daoyi-admin',
+        target:'http://ht.daoyi1088.com/',
         secure: false,
         changeOrigin: true,
         pathRewrite: {
