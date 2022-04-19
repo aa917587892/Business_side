@@ -48,7 +48,7 @@ const registered =() => import("@/views/login/registered")
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode:"history",
   routes: [
     {
@@ -156,19 +156,40 @@ export default new Router({
   },
   {path:'*',redirect:'/'},  //路径上面没有的统一去默认路径
   ]
+
+  
 })
+
+// router.beforeEach((to, from, next) => {
+//   //我在这里模仿了一个获取用户信息的方法
+// let token = localStorage.getItem('token');
+//   if (token) {
+//       //如果用户信息存在则往下执行。
+//       next()
+//   } else {
+//       //如果用户token不存在则跳转到login页面
+//       if (to.path === '/login') {
+//          next()
+//      } else {
+//          next('/login')
+//      }
+//  } 
+// })
+
 // 导航守卫
 // 使用 router.beforeEach 注册一个全局前置守卫，判断用户是否登陆
-// router.beforeEach((to, from, next) => {
-//   if (to.path === '/login') {
-//     next();
-//   } else {
-//     let token = localStorage.getItem('token');
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
+    next();
+  } else {
+    let token = localStorage.getItem('token');
  
-//     if (token === null || token === '') {
-//       next('/login');
-//     } else {
-//       next();
-//     }
-//   }
-// });
+    if (token === null || token === '') {
+      next('/login');
+    } else {
+      next();
+    }
+  }
+});
+
+export default router
