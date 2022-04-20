@@ -56,19 +56,6 @@ export default {
     methods:{
             ...mapMutations(['changeLogin']),
             login_click(){
-            //       this.$axios({
-            //       method: "post",
-            //       url: "apis/api/common/index",
-            //       data: {              
-            //           username: "admin",
-            //           password: "123456",
-            //           // code: null,
-            //           // qq: null
-            //       }
-            //   }).then((res)=>{
-            //       console.log(res);
-            //       console.log("成功");
-            //   })
         const data=this.ruleForm
         post_login(data).then(res=>{ //
             console.log(res);
