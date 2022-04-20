@@ -1,14 +1,9 @@
 <template>
     <div style="width:1050px;background-color:white" v-if="primary">
-         <h2 class="px-3 py-2 border-bottom" style="margin:0px">
-        发布活动
-         </h2>
-
+         <h2 class="px-3 py-2 border-bottom" style="margin:0px">发布活动 </h2>
     <ul class=" p-2">
-
         <el-form :model="formData" :rules="rules" ref="ruleForm" size="small" label-width="120px" class="demo-ruleForm">
             <el-collapse  v-model="activeNames">
-
                 <el-card class="box-card">
                     <el-collapse-item name="1">
                         <template slot="title">
@@ -143,11 +138,12 @@
                         <el-row :gutter="20">
                             <el-col :span="20">
                                 <el-form-item label="商品主图:" prop="GoodsPic">
-                                  
-                                   <el-upload
+                                   <imgupload :limit_count="1" @change="spzt_img" ></imgupload>
+                                   <!-- <el-upload
                                        action="/apis/api/common/upload"
                                        list-type="picture-card"
                                         :limit='1'
+                                        
                                         :headers="token"
                                         :on-success="handleAvatarSuccess"
                                         :on-preview="handlePictureCardPreview"
@@ -156,7 +152,7 @@
                                         </el-upload>
                                         <el-dialog :visible.sync="dialogVisible">
                                         <img width="100%" :src="formData.product_img" alt="">
-                                        </el-dialog>
+                                        </el-dialog> -->
                                 </el-form-item>
                             </el-col>
                         </el-row>
@@ -239,8 +235,8 @@
                                             <el-radio label="4" border style="margin:0px 5px 5px 0px;">直接打开</el-radio>
                                             <el-radio label="5" border style="margin:0px 5px 5px 0px;">淘口令</el-radio>
                                             <el-radio label="6" border style="margin:0px 5px 5px 0px;">二维码</el-radio>
-                                            <el-radio label="8" border style="margin:0px 5px 5px 0px;">商品卡屏</el-radio>
-                                            <el-radio label="7" border style="margin:0px 5px 5px 0px;">其他渠道</el-radio>
+                                            <el-radio label="7" border style="margin:0px 5px 5px 0px;">商品卡屏</el-radio>
+                                            <el-radio label="8" border style="margin:0px 5px 5px 0px;">其他渠道</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
                             </el-col>
@@ -283,8 +279,9 @@
                                 <el-row :gutter="20">
                                     <el-col :span="20">
                                         <el-form-item label="二维码图:" prop="OrCodePic">
-                                           <el-upload
-                                                action="https://jsonplaceholder.typicode.com/posts/"
+                                            <imgupload :limit_count="1" @change="erweima_upload" ></imgupload>
+                                           <!-- <el-upload
+                                                action="/apis/api/common/upload"
                                                 list-type="picture-card"
                                                 :headers="token"
                                                 :on-preview="handlePictureCardPreview"
@@ -293,7 +290,7 @@
                                                 </el-upload>
                                                 <el-dialog :visible.sync="dialogVisible">
                                                 <img width="100%" :src="buy_qrcode" alt="">
-                                            </el-dialog>
+                                            </el-dialog> -->
                                         </el-form-item>
                                     </el-col>
                                 </el-row>
@@ -304,8 +301,8 @@
                                      v-if="formData.inshop_type==5">
                                 <el-row :gutter="20">
                                     <el-col :span="10">
-                                        <el-form-item label="淘口令:" prop="TaoPwd">
-                                            <el-input v-model="formData.TaoPwd" style="width:600px;"></el-input>
+                                        <el-form-item label="淘口令:" prop="tb_buy_password">
+                                            <el-input v-model="formData.tb_buy_password" style="width:600px;"></el-input>
                                         </el-form-item>
                                     </el-col>
                                 </el-row>
@@ -313,7 +310,7 @@
                         </el-collapse-transition>
                         <el-collapse-transition>
                             <el-card shadow="never" style="margin-top:10px;"
-                                     v-if="formData.inshop_type==8">
+                                     v-if="formData.inshop_type==7">
 
                                 <el-row :gutter="20" style="margin-bottom:20px;">
                                     <el-col :span="22" class="tips" :offset="1">
@@ -344,7 +341,7 @@
                         </el-collapse-transition>
                         <el-collapse-transition>
                             <el-card shadow="never" style="margin-top:10px;"
-                                     v-if="formData.inshop_type==7">
+                                     v-if="formData.inshop_type==8">
                                 <el-row :gutter="20">
                                     <el-col :span="22" class="tips" :offset="3">
                                         添加搜索商品步骤图片（如有需要可上传搜索步骤帮助找商品，最多可上传5张图）
@@ -354,19 +351,7 @@
                                     <el-row   style="margin-top:10px;margin-bottom:10px;">
                                     <el-col :span="22" :offset="3">
                                         <div class="qtjd" style="">
-                                               <el-upload 
-                                                :limit='5'
-                                                class="upload_1"
-                                                accept="jpg,png,jpeg,JPEG,PNG,JPG"
-                                                action="https://jsonplaceholder.typicode.com/posts/"
-                                                list-type="picture-card"
-                                                :on-preview="handlePictureCardPreview"
-                                                :on-remove="handleRemove">
-                                                <i class="el-icon-plus" ></i>
-                                            </el-upload>
-                                            <el-dialog :visible.sync="dialogVisible">
-                                                <img width="100%"  :src="dialogImageUrl" alt="">
-                                        </el-dialog>
+                                            <imgupload :limit_count="5" @change="qtjd" ></imgupload>
                                         </div>
                                    
                                     </el-col>
@@ -378,7 +363,7 @@
                                         备注说明:
                                     </el-col>
                                     <el-col :span="20">
-                                        <el-input :maxlength="200" type="textarea" :rows="4" placeholder="重要！商家必须清楚描述活动商品查找的入口步骤，例如第一步手机端首页海淘抢购，第二步12：00点场，第三步88元的武夷山红茶特级正山小种500g。可配合添加步骤图片"></el-input>
+                                        <el-input v-model="formData.other_remark" :maxlength="200" type="textarea" :rows="4" placeholder="重要！商家必须清楚描述活动商品查找的入口步骤，例如第一步手机端首页海淘抢购，第二步12：00点场，第三步88元的武夷山红茶特级正山小种500g。可配合添加步骤图片"></el-input>
 
                                     </el-col>
                                 </el-row>
@@ -398,12 +383,12 @@
                                 <el-divider></el-divider>
                             </el-col>
                         </el-row>
-                        <el-row :gutter="20" v-if="primary.added_value.check_fraud_show ">
+                        <el-row :gutter="20" v-if="primary.added_value.check_fraud_show">
                             <el-col :span="9">
                                 <el-form-item label="照妖镜验号:">
-                                    <el-radio-group v-model="formData.LimitZyjCheckAccount">
-                                        <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不要求</el-radio>
-                                        <el-radio :label="1" border style="margin:0px 10px 0px 0px;">要求</el-radio>
+                                    <el-radio-group v-model="formData.check_fraud">
+                                        <el-radio label="0" border style="margin:0px 10px 0px 0px;">不要求</el-radio>
+                                        <el-radio label="1" border style="margin:0px 10px 0px 0px;">要求</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
 
@@ -413,9 +398,9 @@
                         <el-row :gutter="20" v-if="primary.added_value.check_brain_show =1">
                             <el-col :span="9">
                                 <el-form-item label="电商大脑验号:">
-                                    <el-radio-group v-model="formData.LimitDsdnCheckAccount">
-                                        <el-radio :label="0" border style="margin:0px 10px 0px 0px;" disabled>不要求</el-radio>
-                                        <el-radio :label="1" border style="margin:0px 10px 0px 0px;" disabled>要求</el-radio>
+                                    <el-radio-group v-model="formData.check_brain">
+                                        <el-radio label="0" border style="margin:0px 10px 0px 0px;" disabled>不要求</el-radio>
+                                        <el-radio label="1" border style="margin:0px 10px 0px 0px;" disabled>要求</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
 
@@ -425,32 +410,18 @@
                         <el-row :gutter="20" v-if="primary.added_value.buyer_credit_show">
                             <el-col :span="8">
                                 <el-form-item label="要求买号信誉:">
-                                    <!-- <el-select v-model="formData.mhry" >
-                                            <el-option  label="不要求" value="不要求" ></el-option>
-                                            <el-option  label="白号"  value="白号" ></el-option>
-                                            <el-option label="一心号金币" value="一心号金币" ></el-option>
-                                            <el-option label="二心号金币" value="二心号金币"></el-option>
-                                            <el-option label="三心号金币" value="三心号金币"></el-option>
-                                            <el-option label="四心号金币" value="四心号金币"></el-option>
-                                            <el-option label="五心号金币" value="五心号金币"></el-option>
-                                            <el-option label="一钻号金币" value="一钻号金币"></el-option>
-                                            <el-option label="二钻号金币" value="二钻号金币"></el-option>
-                                            <el-option label="三钻号金币" value="三钻号金币"></el-option>
-                                            <el-option label="四钻号金币" value="四钻号金币"></el-option>
-                                            <el-option label="五钻及以上金币" value="五钻及以上金币"></el-option>
-                                    </el-select> -->
-                                      <el-select v-model="formData.mhry" >
-                                            <el-option  label="不要求" value="不要求" ></el-option>
-                                            <el-option  :label="item.title+'('+item.merchant_fee+')'" :value="item.title" v-for="(item,index) in primary.credit_list" :key="index" ></el-option>
+                                      <el-select v-model="formData.buyer_credit_title" @change="select_buyer_id" >
+                                            <el-option  label="" :value="0" >不要求</el-option>
+                                            <el-option  :label="item.title+'('+item.merchant_fee+')'" name="1" :value="index" v-for="(item,index) in primary.credit_list" :key="index" ></el-option>
                                       </el-select>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="6" class="tips">选择此项将收取对应的增值费</el-col>
                         </el-row>
-                        <el-row :gutter="20" v-if="1&&formData.platform!='4'">
+                        <el-row :gutter="20" v-if="primary.added_value.buyer_auto_mark_merchant_fee">
                             <el-col :span="9">
                                 <el-form-item label="买号自动打标:">
-                                    <el-radio-group v-model="formData.LimitBuyerMark" >
+                                    <el-radio-group v-model="formData.buyer_auto_mark" >
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不要求</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">要求</el-radio>
                                     </el-radio-group>
@@ -462,7 +433,7 @@
                         <el-row :gutter="20" v-if="primary.added_value.need_follow_shop_show =1">
                             <el-col :span="9">
                                 <el-form-item label="要求关注店铺:">
-                                    <el-radio-group v-model="formData.LimitCollectShop">
+                                    <el-radio-group v-model="formData.need_follow_shop">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不要求</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">要求</el-radio>
                                     </el-radio-group>
@@ -474,7 +445,7 @@
                         <el-row :gutter="20" v-if="primary.added_value.need_collect_product_show">
                             <el-col :span="9">
                                 <el-form-item label="要求收藏宝贝:">
-                                    <el-radio-group v-model="formData.LimitCollectGoods">
+                                    <el-radio-group v-model="formData.need_collect_product">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不要求</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">要求</el-radio>
                                     </el-radio-group>
@@ -487,7 +458,7 @@
                         <el-row :gutter="20" v-if="primary.added_value.need_add_cart_show">
                             <el-col :span="9">
                                 <el-form-item label="要求加入购物车:">
-                                    <el-radio-group v-model="formData.LimitAddShoppingCart">
+                                    <el-radio-group v-model="formData.need_add_cart">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不要求</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">要求</el-radio>
                                     </el-radio-group>
@@ -499,7 +470,7 @@
                         <el-row :gutter="20" v-if="primary.added_value.need_service_talk_show">
                             <el-col :span="9">
                                 <el-form-item label="要求和客服聊天:">
-                                    <el-radio-group v-model="formData.LimitChat">
+                                    <el-radio-group v-model="formData.need_service_talk">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不要求</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">要求</el-radio>
                                     </el-radio-group>
@@ -511,7 +482,7 @@
                         <el-row :gutter="20" v-if="primary.added_value.need_verify_buyer_show">
                             <el-col :span="9">
                                 <el-form-item label="要求审核买号:">
-                                    <el-radio-group v-model="formData.LimitAuditAccount">
+                                    <el-radio-group v-model="formData.need_verify_buyer">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不审核</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">审核</el-radio>
                                     </el-radio-group>
@@ -525,7 +496,7 @@
                         <el-row :gutter="20" v-if="primary.added_value.huabei_credit_pay_show">
                             <el-col :span="9">
                                 <el-form-item label="花呗/信用卡付款:">
-                                    <el-radio-group v-model="formData.LimitCreditCard">
+                                    <el-radio-group v-model="formData.huabei_credit_pay">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不允许</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">允许</el-radio>
                                     </el-radio-group>
@@ -538,7 +509,7 @@
                         <el-row :gutter="20" v-if="primary.added_value.need_buyer_sex_show">
                             <el-col :span="10">
                                 <el-form-item label="要求买号性别:">
-                                    <el-radio-group v-model="formData.LimitSex">
+                                    <el-radio-group v-model="formData.need_buyer_sex">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不要求</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">男</el-radio>
                                         <el-radio :label="2" border style="margin:0px 10px 0px 0px;">女</el-radio>
@@ -552,7 +523,7 @@
                         <el-row :gutter="20" v-if="primary.added_value.need_buyer_age_range_show">
                             <el-col :span="9">
                                 <el-form-item label="要求买号年龄:">            
-                                     <el-select v-model="formData.LimitAge">
+                                     <el-select v-model="formData.need_buyer_age_range_message" @change="select_buyer_age">
                                          <el-option label="不要求" :value="0"  ></el-option>
                                          <el-option :label="item" :value="item" v-for="(item,index) in primary.age_range" :key="index"   ></el-option>
                                      </el-select>
@@ -565,7 +536,7 @@
                             <el-col :span="11">
                                 <el-form-item label="限制买号地区:">
    
-                                       <el-select  v-model="formData.LimitArea" placeholder="请选择限制买号地区" multiple style="width:100%;">
+                                       <el-select  v-model="formData.buyer_area_limited" placeholder="请选择限制买号地区" multiple style="width:100%;">
                                             <el-option-group
                                             v-for="(group,index) in primary.region"
                                             :key="index"
@@ -574,7 +545,7 @@
                                                 v-for="item in group.province_list"
                                                 :key="item.id"
                                                 :label="item.title"
-                                                :value="item.id"
+                                                :value="item.title"
                                                 >
                                             </el-option>
                                             </el-option-group>
@@ -582,13 +553,13 @@
                                 </el-form-item>
 
                             </el-col>
-                            <el-col :span="13" class="tips">被选中的地区将禁止接活动 选择此项将收取 {{primary.added_value.buyer_area_limited_merchant_fee}} 金币 增值费</el-col>
+                            <el-col :span="13" class="tips">被选中的地区将禁止接活动 选择此项将收取 {{primary.added_value.check_self_merchant_fee}} 金币 增值费</el-col>
                         </el-row>
 
                         <el-row :gutter="20" v-if="primary.added_value.buyer_category_limited_show">
                             <el-col :span="11">
                                 <el-form-item label="要求买号类目:">
-                                    <el-select v-model="formData.LimitCategory" multiple :multiple-limit="3" style="width:100%;">
+                                    <el-select v-model="formData.buyer_category_limited" multiple :multiple-limit="3" style="width:100%;">
                                             <el-option label="综合商品" value="9"></el-option>
                                     </el-select>
                                 </el-form-item>
@@ -613,7 +584,7 @@
                         <el-row :gutter="20" v-if="primary.added_value.pay_for_reduce_weight_show">
                             <el-col :span="8">
                                 <el-form-item label="降权包赔:">
-                                    <el-radio-group v-model="formData.PayForRightDown">
+                                    <el-radio-group v-model="formData.pay_for_reduce_weight">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不赔</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">包赔</el-radio>
                                     </el-radio-group>
@@ -635,7 +606,7 @@
                         <el-row :gutter="20" v-if="primary.added_value.delay_buy_time_show">
                             <el-col :span="7">
                                 <el-form-item label="延迟购买时间:">
-                                    <el-input-number v-model="formData.DelayBuyDay" :min="0" :max="240" :stp="1" label=""></el-input-number>
+                                    <el-input-number v-model="formData.delay_buy_time" :min="0" :max="240" :stp="1" label=""></el-input-number>
 
                                     
                                 </el-form-item>
@@ -647,7 +618,7 @@
                         <el-row :gutter="0" v-if="primary.added_value.before_in_shop_compare_show">
                             <el-col :span="17">
                                 <el-form-item label="进店前货比:">
-                                    <el-radio-group v-model="formData.ContrastNum">
+                                    <el-radio-group v-model="formData.before_in_shop_compare">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不要求</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">货比1家</el-radio>
                                         <el-radio :label="2" border style="margin:0px 10px 0px 0px;">货比2家</el-radio>
@@ -664,7 +635,7 @@
                                                 trigger="hover"
                                                 content="要求试客货比商品的价格区间描述,例如：10-100金币">
                                         <div slot="reference">
-                                            <el-input v-model="formData.ContrastNumRemark" :disabled="formData.ContrastNum==0" size="small" style="width:110px;padding:0 2px;" placeholder="价格区间描述"></el-input>
+                                            <el-input v-model="formData.before_compare_range" :disabled="formData.before_in_shop_compare==0" size="small" style="width:110px;padding:0 2px;" placeholder="价格区间描述"></el-input>
                                         </div>
                                     </el-popover>
                                 </el-form-item>
@@ -675,7 +646,7 @@
                         <el-row :gutter="0" v-if="primary.added_value.after_in_shop_compare_show">
                             <el-col :span="17">
                                 <el-form-item label="进店后货比:">
-                                    <el-radio-group v-model="formData.ContrastNumLater">
+                                    <el-radio-group v-model="formData.after_in_shop_compare">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不要求</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">货比1家</el-radio>
                                         <el-radio :label="2" border style="margin:0px 10px 0px 0px;">货比2家</el-radio>
@@ -692,7 +663,7 @@
                                                 trigger="hover"
                                                 content="要求试客货比商品的价格区间描述,例如：10-100金币">
                                         <div slot="reference">
-                                            <el-input v-model="formData.ContrastNumLaterRemark" :disabled="formData.ContrastNumLater==0" size="small" style="width:110px;padding:0 2px;" placeholder="价格区间描述"></el-input>
+                                            <el-input v-model="formData.after_compare_range" :disabled="formData.after_in_shop_compare==0" size="small" style="width:110px;padding:0 2px;" placeholder="价格区间描述"></el-input>
                                         </div>
                                     </el-popover>
                                 </el-form-item>
@@ -702,7 +673,7 @@
                         <el-row :gutter="20" v-if="primary.added_value.view_product_nums_show">
                             <el-col :span="14">
                                 <el-form-item label="浏览商品数量:">
-                                    <el-radio-group v-model="formData.BrowseNum">
+                                    <el-radio-group v-model="formData.view_product_nums">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不要求</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">浏览1个</el-radio>
                                         <el-radio :label="2" border style="margin:0px 10px 0px 0px;">浏览2个</el-radio>
@@ -718,7 +689,7 @@
                         <el-row :gutter="0" v-if="primary.added_value.praise_type_show">
                             <el-col :span="18">
                                 <el-form-item label="好评方式:">
-                                    <el-radio-group  v-model="formData.RemarkType">
+                                    <el-radio-group  v-model="formData.praise_type">
                                             <el-radio :label="0" border style="margin:0px 10px 0px 0px;">默认五星</el-radio>
                                             <el-radio :label="1" border style="margin:0px 10px 0px 0px;">自由发挥</el-radio>
                                             <el-radio :label="2" border style="margin:0px 10px 0px 0px;">指定评语</el-radio>
@@ -735,14 +706,14 @@
                                             trigger="hover"
                                             content="发货之后延时多少小时收货好评，如不填写或者填0为不限制时间，试客将在物流签收后自由收货">
                                     <div slot="reference">
-                                        <el-input v-model="formData.RemarkDelay" :disabled="formData.RemarkType==0" size="mini" style="width:35px;padding:0 2px;" class="yanshi"></el-input>
+                                        <el-input v-model="formData.praise_delay_time" :disabled="formData.praise_type==0" size="mini" style="width:35px;padding:0 2px;" class="yanshi"></el-input>
                                     </div>
                                 </el-popover>小时
                             </el-col>
                             <el-col :span="3" class="tips"  >收取  {{}} 金币增值费</el-col>
                         </el-row>
                         <el-collapse-transition>
-                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.RemarkType==2">
+                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.praise_type==2">
                                 <div v-for="(item, index) in formData.RemarkTypes" :key="index">
                                     <el-row :gutter="10">
                                         <el-form-item :label="'评价' + (index+1)+':'" :prop="'RemarkTypes.' + index +'.Remark'" :rules="RemarkTypes.Remark">
@@ -759,7 +730,7 @@
                             </el-card>
                         </el-collapse-transition>
                         <el-collapse-transition>
-                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.RemarkType==3">
+                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.praise_type==3">
                                 <div v-for="(item, index) in formData.RemarkTypes" :key="index">
                                     <el-row :gutter="10">
                                         <el-form-item :label="'评价' + (index+1)+':'" :prop="'RemarkTypes.' + index +'.Remark'" :rules="RemarkTypes.Remark">
@@ -796,7 +767,7 @@
                         </el-collapse-transition>
 
                         <el-collapse-transition>
-                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.RemarkType==4">
+                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.praise_type==4">
                                 <div v-for="(item, index) in formData.RemarkTypes" :key="index" >
                                     <el-row :gutter="10">
                                         <el-form-item :label="'评价' + (index+1)+':'" :prop="'RemarkTypes.' + index +'.Remark'" :rules="RemarkTypes.Remark">
@@ -841,20 +812,15 @@
                             </el-card>
                         </el-collapse-transition>
 
-
-
-
-
-
                         <el-row :gutter="0" v-if="1">
                             <el-col :span="18">
                                 <el-form-item label="追评方式:">
-                                    <el-radio-group v-model="formData.AppendRemarkType">
-                                                <el-radio label="0" border style="margin:0px 10px 0px 0px;">不评价</el-radio>
-                                                <el-radio label="1" border style="margin:0px 10px 0px 0px;">自由发挥</el-radio>
-                                                <el-radio label="2" border style="margin:0px 10px 0px 0px;">指定评语</el-radio>
-                                                <el-radio label="3" border style="margin:0px 10px 0px 0px;">评语带图</el-radio>
-                                                <el-radio label="4" border style="margin:0px 10px 0px 0px;">评语带视频</el-radio>
+                                    <el-radio-group v-model="formData.add_praise_type">
+                                                <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不评价</el-radio>
+                                                <el-radio :label="1" border style="margin:0px 10px 0px 0px;">自由发挥</el-radio>
+                                                <el-radio :label="2" border style="margin:0px 10px 0px 0px;">指定评语</el-radio>
+                                                <el-radio :label="3" border style="margin:0px 10px 0px 0px;">评语带图</el-radio>
+                                                <el-radio :label="4" border style="margin:0px 10px 0px 0px;">评语带视频</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
                             </el-col>
@@ -867,14 +833,14 @@
                                             trigger="hover"
                                             content="发货之后延时多少小时才可以追评，不填写或者填0为不限制时间">
                                     <div slot="reference">
-                                        <el-input v-model="formData.AppendRemarkDelay" :disabled="formData.AppendRemarkType==0" size="mini" style="width:35px;padding:0 2px;" class="yanshi"></el-input>
+                                        <el-input v-model="formData.add_praise_delay_time" :disabled="formData.add_praise_type==0" size="mini" style="width:35px;padding:0 2px;" class="yanshi"></el-input>
                                     </div>
                                 </el-popover>小时
                             </el-col>
                             <el-col :span="3" class="tips">收取 {{}} 金币 增值费</el-col>
                         </el-row>
                         <el-collapse-transition>
-                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.AppendRemarkType==2">
+                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.add_praise_type==2">
                                 <div v-for="(item, index) in formData.AppendRemarkTypes" :key="index">
                                     <el-row :gutter="10">
                                         <el-form-item :label="'追评' + (index+1)+':'" :prop="'AppendRemarkTypes.' + index +'.Remark'" :rules="AppendRemarkTypes.Remark">
@@ -891,7 +857,7 @@
                             </el-card>
                         </el-collapse-transition>
                         <el-collapse-transition>
-                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.AppendRemarkType==3">
+                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.add_praise_type==3">
                                 <div v-for="(item, index) in formData.AppendRemarkTypes" :key="index">
                                     <el-row :gutter="10">
                                         <el-form-item :label="'追评' + (index+1)+':'" :prop="'AppendRemarkTypes.' + index +'.Remark'" :rules="AppendRemarkTypes.Remark">
@@ -928,7 +894,7 @@
                         </el-collapse-transition>
 
                         <el-collapse-transition>
-                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.AppendRemarkType==4">
+                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.add_praise_type==4">
                                 <div v-for="(item, index) in formData.AppendRemarkTypes" :key="index">
                                     <el-row :gutter="10">
                                         <el-form-item :label="'评价' + (index+1)+':'" :prop="'AppendRemarkTypes.' + index +'.Remark'" :rules="AppendRemarkTypes.Remark">
@@ -978,7 +944,7 @@
                             <el-col :span="9">
                                 <el-form-item label="搭配商品:"> 
 
-                                    <el-radio-group v-model="formData.LimitSubProdShow">
+                                    <el-radio-group v-model="formData.add_product_type">
                                             <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不启用</el-radio>
                                             <el-radio :label="1" border style="margin:0px 10px 0px 0px;">启用</el-radio>
                                     </el-radio-group>
@@ -987,8 +953,8 @@
                             <el-col :span="14" class="tips">有多件下单需求的，请开启并填写副宝贝信息 （启用此项将收取 {{sCost.limitSubProd}} 金币/个 增值费）</el-col>
                         </el-row>
                         <el-collapse-transition>
-                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.LimitSubProdShow ==1">
-                                <div v-for="(item, index) in formData.LimitSubProd.LimitSubProds" :key="index" class="mt-1">
+                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.add_product_type ==1">
+                                <div v-for="(item, index) in formData.add_product" :key="index" class="mt-1">
                                     <el-row :gutter="10" class="flex align-center">
                                         <el-col :span="7">
                                             <el-form-item   >
@@ -1007,12 +973,7 @@
                                             </el-form-item>
                                         </el-col>
                                         <el-col :span="3">
-                                          <el-upload class="avatar-uploader" action="https://jsonplaceholder.typicode.com/posts/" 
-                                            :show-file-list="false" :on-success="photo_success" :before-upload="photo_before">
-    
-                                                  <img v-if="item.imageUrl" :src="item.imageUrl" class="avatar">
-                                                    <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-                                          </el-upload>
+                                            <div style="width:90px;height:90px"><imgupload :index="index" :limit_count="1" @change="dapeigoods" > </imgupload></div>
                                         </el-col>
                                         <el-col :span="3">
                                             <el-button v-if="index==0" size="small" v-on:click.prevent="addLimitSubProd()">增加</el-button>
@@ -1043,7 +1004,7 @@
                         <el-row :gutter="20" v-if="1">
                             <el-col :span="14">
                                 <el-form-item label="礼品服务:">
-                                    <el-radio-group v-model="formData.IsExpress">
+                                    <el-radio-group v-model="formData.gift_service">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不使用</el-radio>
                                         <!-- <el-radio :label="1" v-if="false" border style="margin:0px 10px 0px 0px;">KBKD</el-radio> -->
                                         <el-radio :label="2" border style="margin:0px 10px 0px 0px;">选择礼品</el-radio>
@@ -1055,7 +1016,7 @@
 
                         <el-collapse-transition>
                             <el-card shadow="never" style="margin-top:1px;margin-bottom:20px;"
-                                     v-if="formData.IsExpress==1">
+                                     v-if="formData.gift_service==1">
                                 <el-row :gutter="20">
                                     <el-col :span="24">
                                         <el-form-item label="选择KD：">
@@ -1079,7 +1040,7 @@
                         </el-collapse-transition>
                         <el-collapse-transition>
                             <el-card shadow="never" style="margin-top:1px;margin-bottom:20px;"
-                                     v-if="formData.IsExpress==2">
+                                     v-if="formData.gift_service==2">
                                 <el-row :gutter="20">
                                     <el-col :span="24">
                                         <div class="gift_express_box">
@@ -1112,7 +1073,7 @@
                         <el-row :gutter="20">
                             <el-col :span="7">
                                 <el-form-item label="追加金币:">
-                                    <el-input-number v-model="formData.AppendMoney" :precision="2" :min="0" label="追加金币"></el-input-number>
+                                    <el-input-number v-model="formData.add_coins" :precision="2" :min="0" label="追加金币"></el-input-number>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="16" class="tips">填入给试客的金币奖励</el-col>
@@ -1120,16 +1081,16 @@
                         <el-row :gutter="20">
                             <el-col :span="9">
                                 <el-form-item label="活动定时:">
-                                    <el-radio-group v-model="formData.LimitPutOn">
+                                    <el-radio-group v-model="formData.timing_type">
                                         <el-radio :label="0" border style="margin:0px 10px 0px 0px;">不启用</el-radio>
                                         <el-radio :label="1" border style="margin:0px 10px 0px 0px;">启用</el-radio>
                                     </el-radio-group>
                                 </el-form-item>
                             </el-col>
-                            <el-col :span="14" class="tips">定时上架的数量总数应该与此活动的总数量一致 （启用此项将收取 {{sCost.limitPutOn}} 金币 增值费）</el-col>
+                            <el-col :span="14" class="tips">定时上架的数量总数应该与此活动的总数量一致 （启用此项将收取 {{primary.added_value.timing_merchant_fee}} 金币 增值费）</el-col>
                         </el-row>
                         <el-collapse-transition>
-                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.LimitPutOn!=0">
+                            <el-card shadow="never" style="margin-top:10px;margin-bottom:20px;" v-if="formData.timing_type!=0">
                                 <el-row :gutter="10" v-for="(item, index) in formData.LimitPutOns" :key="index">
                                     <el-col :span="9">
                                         <el-form-item label-width="130px" :label="'定时' + (index+1)+':'" :prop="'LimitPutOns.' + index +'.PutTime'" :rules="LimitPutOns.PutTime">
@@ -1184,8 +1145,8 @@
 
                         <el-row :gutter="20">
                             <el-col :span="10">
-                                <el-form-item label="模版名称:" prop="TaskTempName">
-                                    <el-input v-model="formData.TaskTempName"></el-input>
+                                <el-form-item label="模版名称:" prop="template_title">
+                                    <el-input v-model="formData.template_title"></el-input>
                                 </el-form-item>
                             </el-col>
                             <el-col :span="14" class="tips">提示: 不填写名称则默认不创建模版</el-col>
@@ -1193,8 +1154,8 @@
                         
                         <el-row :gutter="20">
                             <el-col :span="20">
-                                <el-form-item label="留言提醒:" prop="TaskTip">
-                                    <el-input v-model="formData.TaskTip"></el-input>
+                                <el-form-item label="留言提醒:" prop="notice">
+                                    <el-input v-model="formData.notice"></el-input>
                                 </el-form-item>
                             </el-col>
                         </el-row>
@@ -1225,13 +1186,13 @@
                    <div style="margin-top: 20px;">
                        <p style="margin-left:64px;">商品总价：<span style="color:#409EFF;">{{formData.product_price*formData.product_nums}}</span></p>
                        <p style="margin-left:50px;" v-if="formData.product_price > 0" >基础服务费：<span style="color:#409EFF;">7</span></p>
-                       <p style="margin-left:50px;">增值服务费：<span style="color:#409EFF;">0.00</span></p>
+                       <p style="margin-left:50px;">增值服务费：<span style="color:#409EFF;">{{zengzhi_computed}}</span></p>
                        <p style="margin-left:64px;">追加金币：<span style="color:#409EFF;">{{formData.AppendMoney}}</span></p>
                        <hr><p><span style="color:#409EFF;margin-left:20px;">x</span>
                             <span style="margin-left:36px;">活动数量：<span style="color:#409EFF;">{{formData.task_nums}}</span></span></p>
                             <div role="alert" class="el-alert is-center el-button--primary is-dark" style="margin-top: 20px;">
                                 <div class="el-alert__content">
-                                    <span class="el-alert__title">合计：38.00</span>
+                                    <span class="el-alert__title">合计：{{sum}}</span>
                                     <i class="el-alert__closebtn el-icon-close" style="display: none;"></i>
                                 </div>
                             </div>
@@ -1253,11 +1214,11 @@
     </div>    
 </template>
 <script>
-import {get_add,post_computed,post_add} from'@/network/merchant/sellTaskMoney/add'
+import {get_add,get_shop_list,post_computed,post_add} from'@/network/merchant/sellTaskMoney/add'
+import imgupload from '@/components/commom/el-upload/el-upload.vue'
 export default {
     data(){
-        return{
-            user_token:'',
+      return{
             formData:{
                     task_type:'1',   		//活动频道 默认1-试用活动
                     template:'',  			//模板
@@ -1280,64 +1241,65 @@ export default {
                     AppendMoney:'0',    //追加金币
                     CollocationNum:'0',  //搭配商品数量
                     DelayBuyDay:'0',        //延时购买时间
-
                     search_keywords:[{       //搜索关键词
                        value:'asdas',
                         Describe:'',
                         Num:'2',
                     }],
 
-
                     EnterShopType:1,
                     screenClipListID:0,      //卡片类型
                     RemarkType:"",      //好评方式
                     AppendRemarkType:"1",
-                    mhry:'不要求',
 
-                    // inshop_type:'1',    //进店方式
-                    KeyWords:{               
-                        KeyWord:[{
-                            value:'我是关键词',
-                            Describe:'2323',
-                            Num:'223123',
-                        }],
-                      
-                        KeyWordnumber:2,        
-                    },
-                    TaoPwd:'XXX',           //淘口令
+  
+                    tb_buy_password:'XXX',           //淘口令
                     buy_qrcode:'',      //二维码图片
                     print_type:'0',     //商品卡屏
-                    other_images:'',       //其他聚到说明图片
+                    other_images:[],       //其他聚到说明图片
                     other_remark:'',        //其他渠道备注
-                    check_self:'0' ,         //商家自主验号
-                    check_fraud:'0',  //照妖镜验号
-                    check_brain:'0',     //要求买手信誉
-                    buyer_credit:'0',    //买号自动打标
-                    buyer_auto_mark:'0',     //买号自动打标 
-                    need_follow_shop:'0',    //	要求关注店铺 
-                    need_collect_product:'0',    //要求收藏宝贝
-                    need_add_cart:'0',       //	要求加入购物车
-                    need_service_talk:'',       //要求和客服聊天
-                    need_verify_buyer:'',   //要求审核买号
-                    huabei_credit_pay:'',   //花呗信用卡付款
-                    need_buyer_sex:'',          //要求买号性别
-                    need_buyer_age_range:'',        //要求买号年龄段
+                    check_self:0 ,         //商家自主验号
+                    check_fraud:0,  //照妖镜验号
+                    check_brain:0,    
+                    buyer_credit:0,     //要求买手信誉
+                    buyer_credit_title:'不要求',
+                    buyer_auto_mark:0,     //买号自动打标 
+                    need_follow_shop:0,    //	要求关注店铺 
+                    need_collect_product:0,    //要求收藏宝贝
+                    need_add_cart:0,       //	要求加入购物车
+                    need_service_talk:0,       //要求和客服聊天
+                    need_verify_buyer:0,   //要求审核买号
+                    huabei_credit_pay:0,   //花呗信用卡付款
+                    need_buyer_sex:0,          //要求买号性别
+                    need_buyer_age_range:0,
+                    need_buyer_age_range_message:'不要求',        //要求买号年龄段
                     buyer_area_limited:'',      //要求买号地区,多个用
                     buyer_category_limited:'',      //要求买号类目,多个用’,’隔开
-                    delay_buy_time:'',             //	延迟购买时间
-                    before_in_shop_compare:'',      //	要求进店前货比
+                    delay_buy_time:'0',             //	延迟购买时间
+                    before_in_shop_compare:0,      //	要求进店前货比
                     before_compare_range:'',        //	进店前价格区间描述
-
-                    LimitSubProdShow:0, //商品搭配显示
-                    LimitSubProd:{    //搭配商品 --链接
-                        LimitSubProds:[{
-                                url:'123123',
-                                title:'dfdsfs',
-                                price:'3444',
-                                imageUrl:''
-                        }],
-                    LimitSubProdsNumber:1   //链接数量和
-                    }
+                    after_in_shop_compare:0,        //进店后货比
+                    after_compare_range:'',          //进店后价格区间
+                    view_product_nums:0,               //浏览商品数量
+                    praise_type:0,                  //好评方式
+                    praise_content:[{}],            //当评论方式3 4 5
+                    praise_delay_time:'0',           //评价延时时间
+                    add_praise_type:0,                      //追评方式
+                    add_praise_delay_time:'0',       //追评延时时间 
+                    add_praise_content:[{}],           //追评 3 4 5
+                    add_product_type:0,             //搭配商品
+                    add_product:[                    //搭配商品,json数组
+                        { url:'123123',
+                          title:'dfdsfs',
+                          price:'3444',
+                          imageUrl:''}],              
+                    pay_for_reduce_weight:0,        //降权赔付
+                    timing_type:0,                  //定时任务	
+                    timing_content:[{}],             //定时内容
+                    gift_service:0,                 //礼品开启
+                    add_coins:0,                    //追加金币
+                    template_title:'',              //模板名称
+                    notice:'',                      //留言提醒
 
             },
                imageUrl:'',
@@ -1382,8 +1344,7 @@ export default {
             activeNames: ['1','2','3','4','5'], //折叠面板展开
 
             primary:"", //基础属性
-
-            
+                        
             post_data:{     //提交的数据
                 task_type:'',   //活动频道 默认1-试用活动
                 template:'',    //模板
@@ -1393,57 +1354,21 @@ export default {
         }
     },
     created(){
-        get_add().then(res=>{
+        get_add().then(res=>{   //发布任务参数接口
             if(res.code==1){
                 this.primary = res.data
             }
             console.log( this.primary)
         })
-       
-        this.get_token()
-
-    },
-    computed:{
-        ClipList(){
-            return this.screenClipList[this.formData.screenClipListID].title
-        },
-        token(){
-            return {
-                'token':this.user_token
-            }
-            
-        }
-
+       get_shop_list().then(res=>{  
+           if(res.code=1){
+               console.log(res);
+           }
+            })
+            console.log();
+   
     },
     methods: {
-        get_token(){
-              var a =  localStorage.getItem('token')
-            console.log()
-            console.log(a)
-            this.user_token = a
-        //    return a
-      
-
-        },
-
-      handleAvatarSuccess(res, file) {  //图片上传成功
-        this.formData.product_img = URL.createObjectURL(file.raw);
-        console.log(  this.formData.product_img);
-        
-      },
-
-
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePictureCardPreview(file) {
-        this.dialogImageUrl = file.url;
-        this.formData.product_img = file.url;
-        console.log(this.formData.product_img)
-        console.log(this.dialogImageUrl);
-        this.dialogVisible = true;
-      },
-
     addKeyWord() {       //添加关键词
       this.formData.search_keywords.push({
           value:'',
@@ -1451,41 +1376,63 @@ export default {
           Num:'', 
         });
         console.log( this.formData.search_keywords)
-        // console.log(this.KeyWords)
       },
-      removeKeyWord(item){
+    removeKeyWord(item){
         var index = this.formData.search_keywords.indexOf(item)
         if (index !== -1) {
            this.formData.search_keywords.splice(index, 1)
         }
       },
 
+    erweima_upload(value){
+        this.formData.buy_qrcode =value
+        console.log(value+'上传成功');
 
-
-      addLimitSubProd() {
-      this.formData.LimitSubProd.LimitSubProds.push({
-          value:'',
-          key: Date.now()
+    },
+    //商品主图
+    spzt_img(value){
+        this.product_img=value
+    },
+    //其他聚到图片
+    qtjd(value){
+        this.formData.other_images.push({
+          'img_url':value,
         });
-        // console.log( this.formData.KeyWords.KeyWord)
-        // console.log(this.KeyWords)
+         console.log(value+'上传成功');
+         console.log(this.formData.other_images)
+    },
+    //买手荣誉下拉
+    select_buyer_id(id){ this.formData.buyer_credit=id },
+     //买手年龄下拉
+    select_buyer_age(id){
+        this.formData.need_buyer_age_range=id
+        console.log(this.formData.buyer_area_limited) 
+    },
+     //添加商品链接
+    addLimitSubProd() {  
+        this.formData.add_product.push({
+                url:'',
+                title:'',
+                price:'',
+                imageUrl:''
+            });
       },
-      removeLimitSubProd(item){
-        var index = this.formData.LimitSubProd.LimitSubProds.indexOf(item)
+    removeLimitSubProd(item){
+        var index = this.formData.add_product.indexOf(item)
         if (index !== -1) {
-           this.formData.LimitSubProd.LimitSubProds.splice(index, 1)
+           this.formData.add_product.splice(index, 1)
         }
       },
+      //搭配商品上传的图片
+    dapeigoods(id,index){
+         this.formData.add_product[index].imageUrl=id
+         console.log(this.formData.add_product);
+     },
 
 
         ///图片上传
-       photo_success(res, file) {
-        this.formData.LimitSubProd.LimitSubProds.imageUrl = URL.createObjectURL(file.raw);
-        // console.log(file.raw);
-        console.log(file)
-
-      },
-      photo_before(file) {
+      
+    photo_before(file) {
         const isJPG = file.type === 'image/jpeg';
         console.log(file.type)
         const isLt2M = file.size / 1024 / 1024 < 2;
@@ -1499,15 +1446,50 @@ export default {
         return isJPG && isLt2M;
       },
 
-    submit_form(){
-
+    //提交表单
+    submit_form(){  
         const data = this.formData
         post_add(data).then(res=>{
             console.log(res)
         })
     }
-       
+    },
+    computed:{
+    ClipList(){
+            return this.screenClipList[this.formData.screenClipListID].title
+        },
+    //计算增值服务费
+    zengzhi_computed(){
+        let Count =0;
+        if(this.formData.check_brain >0){
+            Count+=this.primary.added_value.check_brain_merchant_fee-0
+        }
+        if(this.formData.buyer_auto_mark > 0){
+          Count  = Count+(this.primary.added_value.buyer_auto_mark_merchant_fee-0)
+        }
+        if(this.formData.buyer_credit > 0){
+            Count+=(this.primary.credit_list[this.formData.buyer_credit].merchant_fee-0)   //买手信誉多少钱
+        }
+        // if(this.primary.added_value.buyer_auto_mark > 0){
+        //     Count+=this.primary.added_value.buyer_auto_mark_merchant_fee
+        // }
+        return Count.toFixed(2);
+    },
+    //计算总共
+       sum(){
+          var money= (this.formData.product_price*this.formData.product_nums-0)
+                if(this.formData.product_price > 0){ money+=7}
+                money +=(this.zengzhi_computed-0 )
+                  money +=(this.formData.AppendMoney-0)
+                  money = (money * this.formData.task_nums-0)
+             
+              
+          return money.toFixed(2);
+       }
 
+    },
+    components:{
+        imgupload
     }
 }
 </script>
@@ -1549,6 +1531,4 @@ export default {
     display: block;
     border-radius: 5px;
   }
-    
-
 </style>

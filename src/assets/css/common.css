@@ -1,3 +1,8 @@
 .home  .el-tabs__header{
 	margin: 0px;
-  } 
+  }
+
+.yanshi .el-input__inner{
+  padding:0px 0px!important;
+  text-align: center;
+}
