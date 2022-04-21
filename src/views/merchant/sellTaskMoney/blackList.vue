@@ -21,7 +21,7 @@ export default {
         }
     },
     created(){
-        blacklist().then(res=>{
+        blacklist().then(res=>{ 
             console.log(res)
         })
     }
