@@ -31,13 +31,16 @@
                     <el-button type="success" size="small">导出结果</el-button>
                 </el-row>  
             </div>
-             <el-table  class="border-top mx-2"  ref="multipleTable"   :data="tableData"  tooltip-effect="dark" style="width: 100%"   @selection-change="handleSelectionChange">
+            <div class="mx-2 border">
+                <el-table  class=" "  ref="multipleTable"   :data="tableData"  tooltip-effect="dark" style="width: 100%"   @selection-change="handleSelectionChange">
                     <el-table-column type="selection"> </el-table-column>
                     <el-table-column label="活动信息" ></el-table-column>
                     <el-table-column   prop="name" label="付款信息" > </el-table-column>
                     <el-table-column  prop="address"  label="收款信息"  show-overflow-tooltip>  </el-table-column>
                     <el-table-column  prop="address"  label="操作" >  </el-table-column>
                 </el-table>
+            </div>
+             
       </div>  
 </template>
 <script>
